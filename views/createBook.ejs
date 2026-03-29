@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Create A Book</h2>
+    <form action="/books/create" method="POST">
+      <input type="text" name="title" placeholder="Title" required /><br />
+      <input
+        type="text"
+        name="description"
+        placeholder="Description"
+        required
+      />
+      <br />
+
+      <h4>Genre:</h4>
+      <input type="radio" id="fantasy" name="genre" value="Fantasy" />
+      <label for="fantasy">Fantasy</label><br />
+
+      <input type="radio" id="romance" name="genre" value="Romance" />
+      <label for="romance">Romance</label><br />
+
+      <input type="radio" id="horror" name="genre" value="Horror" />
+      <label for="horror">Horror</label><br />
+
+      <input type="radio" id="history" name="genre" value="History" />
+      <label for="history">History</label><br />
+
+      <input type="radio" id="crime" name="genre" value="Crime" />
+      <label for="crime">Crime</label><br /><br />
+
+      <input
+        type="number"
+        name="numOfPages"
+        placeholder="numOfPages"
+        required
+      />
+      <br />
+      <input type="text" name="author" placeholder="Author" required /><br />
+      <input
+        type="number"
+        name="numOfCopies"
+        placeholder="number Of Copies"
+        required
+      />
+      <br />
+      <button type="submit">Create</button>
+    </form>
+  </body>
+</html>

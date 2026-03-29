@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <h4>Sign in <a href="/auth/sign-in">here</a>.</h4>
+    <h2>Sign Up</h2>
+    <form action="/auth/sign-up" method="POST">
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        required
+      /><br />
+      <input type="email" name="email" placeholder="Email" required /><br />
+      <input type="text" name="picture" placeholder="Profile Picture URL" />
+
+      <h4>Type Of User:</h4>
+      <input type="radio" id="library" name="typeOfUser" value="Library" />
+      <label for="library">Library</label><br />
+      <input type="radio" id="normalUser" name="typeOfUser" value="Normal" />
+      <label for="normalUser">Normal User</label><br />
+
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+      /><br />
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        required
+      />
+      <br />
+      <button type="submit">Register</button>
+    </form>
+  </body>
+</html>
