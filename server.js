@@ -1,4 +1,8 @@
-require("dotenv").config({ quiet: true })
+
+const dns = require("dns")
+ dns.setServers(["8.8.8.8", "1.1.1.1"])
+
+ require("dotenv").config({ quiet: true })
 const express = require("express")
 const methodOverride = require("method-override")
 const session = require("express-session")
@@ -6,8 +10,6 @@ const { MongoStore } = require("connect-mongo")
 const morgan = require("morgan")
 const db = require("./db")
 
-// const dns = require("dns")
-// dns.setServers(["8.8.8.8", "1.1.1.1"])
 
 //require routers
 const authRouter = require("./routes/authRouter")
