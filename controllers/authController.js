@@ -35,8 +35,7 @@ const registerUser = async (req, res) => {
 const signInUser = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email })
-    const user1 = await User.find({ email: req.body.email })
-    const userBooks = await LibraryBook.find({ user: user1 })
+    const userBooks = await LibraryBook.find({ user: user })
     if (!user) {
       return res.send(
         "❌ No user has been registered with that email. Please sign up!"
@@ -53,11 +52,11 @@ const signInUser = async (req, res) => {
     }
     let books_detail = []
     for (let i = 0; i < userBooks.length; i++) {
-      const book_details = await Book.find({ title: userBooks[i].book.title })
-      books_detail.push(book_details[0])
+      const book_details = await Book.findOne({ _id: userBooks[i].book._id })
+      books_detail.push(book_details)
     }
     const libraryDetails = {
-      user: user1[0],
+      user: user,
       userBooks: books_detail,
     }
     console.log(libraryDetails)
