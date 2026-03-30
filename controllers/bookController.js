@@ -69,7 +69,7 @@ const updateBookById = async (req, res) => {
     const book = await Book.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { returnDocument: "after" }
+   res.send(book)
     )
 
     res.redirect(`/books/${book._id}`)
