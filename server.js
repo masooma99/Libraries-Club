@@ -6,9 +6,6 @@ const { MongoStore } = require("connect-mongo")
 const morgan = require("morgan")
 const db = require("./db")
 
-// const dns = require("dns")
-// dns.setServers(["8.8.8.8", "1.1.1.1"])
-
 //require routers
 const authRouter = require("./routes/authRouter")
 const userRouter = require("./routes/userRouter")
@@ -32,6 +29,7 @@ app.use(
 app.use("/auth", authRouter)
 app.use("/users", userRouter)
 app.use("/books", bookRouter)
+
 app.listen(PORT, () => {
   console.log(`Express server is listening on port : ${PORT}`)
 })
