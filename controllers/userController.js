@@ -21,14 +21,14 @@ const getUserById = async (req, res) => {
     const data = {
       _id: user._id,
       username: user.username,
-      email: user.email, 
+      email: user.email,
       picture: user.picture,
       typeOfUser: user.typeOfUser,
       address: user.address,
       recipes: recipes
     }
 
-    res.send(data)
+   res.render('../views/userPage.ejs', { user: data })
 
   } catch (error) {
     console.error('⚠️ An error has occurred finding a user!', error.message)
