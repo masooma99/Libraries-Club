@@ -14,11 +14,11 @@
       <%}%>
   </header>
   <section>
-    <%//for(let i =0; i<libraryDetails.books.length; i++){%>
+    <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
     <div>
-      <h3><%= libraryDetails.userBooks.numOfCopies%></h3>
+      <h3><%= libraryDetails.userBooks[i].title%></h4>
     </div>
-    <%//}%>
+    <%}%>
   </section>
 
 </body>
