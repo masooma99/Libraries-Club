@@ -63,9 +63,23 @@ const getAllBook = async (req, res) => {}
 
 const getAllBooksByLibraryId = async (req, res) => {}
 
+
+const deleteBookById = async (req, res) => {
+  try {
+    await Book.findByIdAndDelete(req.params.id)
+      //edit page
+    res.render('../views/confirm.ejs')
+  } catch (error) {
+    console.error('⚠️ Error deleting book:', error.message)
+  }
+}
+
+
+
 module.exports = {
   createBook,
   findByTitle,
   getAllBook,
   getAllBooksByLibraryId,
+  deleteBookById
 }
