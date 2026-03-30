@@ -5,6 +5,7 @@ const User = require("../models/User")
 const createBook = async (req, res) => {
   try {
     const bookInDB = await Book.exists({ title: req.body.title })
+    const user = await User.findOne({ email: req.session.user.email })
 
     let tempBook
 
@@ -32,9 +33,15 @@ const createBook = async (req, res) => {
     }
     const userBooks = await LibraryBook.find({ user: req.session.user })
 
+    let books_detail = []
+    for (let i = 0; i < userBooks.length; i++) {
+      const book_details = await Book.findOne({ _id: userBooks[i].book._id })
+      books_detail.push(book_details)
+    }
+
     const libraryDetails = {
-      user: req.session.user,
-      userBooks: userBooks,
+      user: user,
+      userBooks: books_detail,
     }
     console.log(userBooks)
     req.session.save(() => {
