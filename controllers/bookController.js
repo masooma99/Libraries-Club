@@ -64,6 +64,20 @@ const getAllBook = async (req, res) => {}
 const getAllBooksByLibraryId = async (req, res) => {}
 
 
+const updateBookById = async (req, res) => {
+  try {
+    const book = await Book.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { returnDocument: "after" }
+    )
+
+    res.redirect(`/books/${book._id}`)
+  } catch (error) {
+    console.error('⚠️ An error has occurred updating a book!', error.message)
+  }
+}
+
 const deleteBookById = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id)
@@ -81,5 +95,6 @@ module.exports = {
   findByTitle,
   getAllBook,
   getAllBooksByLibraryId,
+  updateBookById,
   deleteBookById
 }
