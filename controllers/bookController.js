@@ -68,9 +68,7 @@ const updateBookById = async (req, res) => {
   try {
     const book = await Book.findByIdAndUpdate(
       req.params.id,
-      req.body,
-   res.send(book)
-    )
+      req.body,{ returnDocument: "after" })
 
     res.redirect(`/books/${book._id}`)
   } catch (error) {
@@ -81,8 +79,8 @@ const updateBookById = async (req, res) => {
 const deleteBookById = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id)
-      //edit page
-    res.render('../views/confirm.ejs')
+      //edit page الصفحة الا نسوي فيها المسح
+    res.render('../views/ejs')
   } catch (error) {
     console.error('⚠️ Error deleting book:', error.message)
   }
