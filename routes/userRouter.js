@@ -8,4 +8,7 @@ router.get("/", userController.testing)
 router.get("/home", (req, res) => {
   res.render("../views/home.ejs", { Book })
 })
+router.get("/bookstitle", (req, res) => {
+  res.render("../views/auth/booksTitel")
+})
 module.exports = router
