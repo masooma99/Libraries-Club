@@ -12,6 +12,8 @@ const testing = async (req, res) => {
 
 const getBookById = async (req, res) => {
   try {
+    console.log(req.params.id)
+    console.log("you went to the function ")
     const book = await Book.findOne({ _id: req.params.id })
 
     // res.send(book)

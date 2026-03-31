@@ -15,8 +15,8 @@
   </header>
   <section>
     <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
-      <a href="/users/:<%=libraryDetails.userBooks[i]._id%>">
-        <div >
+      <a href="/users/<%=libraryDetails.userBooks[i]._id%>">
+        <div>
           <h3><%= libraryDetails.userBooks[i]._id%></h4>
         </div>
       </a>
