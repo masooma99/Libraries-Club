@@ -1,6 +1,7 @@
 const Book = require("../models/Book")
 const LibraryBook = require("../models/LibraryBook")
 const User = require("../models/User")
+// const userDiv = document.querySelectorAll(".userBook")
 
 const createBook = async (req, res) => {
   try {
@@ -42,7 +43,10 @@ const createBook = async (req, res) => {
     const libraryDetails = {
       user: user,
       userBooks: books_detail,
+      Book: Book,
+      LibraryBook: LibraryBook,
     }
+
     console.log(userBooks)
     req.session.save(() => {
       return res.render("../views/userPage.ejs", { libraryDetails })
@@ -62,6 +66,24 @@ const findByTitle = async (req, res) => {
 const getAllBook = async (req, res) => {}
 
 const getAllBooksByLibraryId = async (req, res) => {}
+
+// userDiv.addEventListener("click", async(req, res) => {
+//   const userBooks = await LibraryBook.find({ user: req.session.user })
+
+//   userBooks[]
+
+//     let books_detail = []
+//     for (let i = 0; i < userBooks.length; i++) {
+//       const book_details = await Book.findOne({ _id: userBooks[i].book._id })
+//       books_detail.push(book_details)
+//     }
+//   console.log("Clicked div ID:", this.id)
+// })
+
+// userDiv.addEventListener("click",()=>{
+//       const userBooks = await LibraryBook.find({ user: req.session.user })
+//       userBooks[??id]
+//     })
 
 module.exports = {
   createBook,

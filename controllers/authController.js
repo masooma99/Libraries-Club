@@ -59,6 +59,7 @@ const signInUser = async (req, res) => {
       user: user,
       userBooks: books_detail,
     }
+    // console.log(libraryDetails)
 
     //save the session object and sending a response
     req.session.save(() => {
