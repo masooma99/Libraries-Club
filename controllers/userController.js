@@ -16,7 +16,7 @@ const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
 
-    const recipes = await Recipe.find({ author: user._id })
+    const books = await Book.find({ author: user._id })
 
     const data = {
       _id: user._id,
@@ -25,7 +25,7 @@ const getUserById = async (req, res) => {
       picture: user.picture,
       typeOfUser: user.typeOfUser,
       address: user.address,
-      recipes: recipes
+      books: books
     }
 
    res.render('../views/userPage.ejs', { user: data })
