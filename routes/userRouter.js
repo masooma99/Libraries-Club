@@ -5,8 +5,5 @@ const userController = require("../controllers/userController")
 
 router.get("/", userController.testing)
 router.get("/:id", userController.getBookById)
-// router.get("/:id", (req, res) => {
-// res.render("../views/userPage.ejs")
-// })
 
 module.exports = router
