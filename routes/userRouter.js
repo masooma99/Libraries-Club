@@ -11,4 +11,5 @@ router.get("/home", (req, res) => {
 router.get("/bookstitle", (req, res) => {
   res.render("../views/auth/booksTitel")
 })
+
 module.exports = router

@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>home page</title>
   </head>
   <body>
 
-
+<%- include('../views/partials/header.ejs') %>
 
       <div class="search">
       <input type="text" class="search-text" />
@@ -19,12 +19,12 @@
 <% if (typeof books !== 'undefined' && books.length > 0) { %>
 <% books.forEach(book => { %>
 
-  <a href="/book<%= book.id %>" >
-<img src="<%= book.picture %>" alt="<%= book.title %>" class="book-image"/>
-  </a>
+  <a href="/book/<%= book._id %>"> <img src="<%= book.picture %>" alt="<%= book.title %>" class="book-image"/>
+  <div class="book-title"><%= book.title %></div>
+</a>
 
 
-<div class="book-title"><%= book.title %></div>
+
 
 <% }) %>
 <% } else { %>
@@ -32,7 +32,7 @@
 <% } %>
     </div>
 
-<a href="/auth/booksTitel"> Books Title</a>
 
+    <%- include('.../views/footer.ejs') %>
   </body>
 </html>
