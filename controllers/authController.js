@@ -62,7 +62,8 @@ const signInUser = async (req, res) => {
 
     //save the session object and sending a response
     req.session.save(() => {
-      res.render("../views/userPage.ejs", { libraryDetails })
+      // res.render("../views/userPage.ejs", { libraryDetails })
+      res.redirect("/users/")
     })
   } catch (error) {
     res.send(`error: ${error}`)
