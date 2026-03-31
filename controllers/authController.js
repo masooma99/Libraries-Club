@@ -50,19 +50,8 @@ const signInUser = async (req, res) => {
       email: user.email,
       _id: user._id,
     }
-    let books_detail = []
-    for (let i = 0; i < userBooks.length; i++) {
-      const book_details = await Book.findOne({ _id: userBooks[i].book._id })
-      books_detail.push(book_details)
-    }
-    const libraryDetails = {
-      user: user,
-      userBooks: books_detail,
-    }
-
     //save the session object and sending a response
     req.session.save(() => {
-      // res.render("../views/userPage.ejs", { libraryDetails })
       res.redirect("/users/")
     })
   } catch (error) {
