@@ -1,38 +1,38 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>home page</title>
-  </head>
-  <body>
+    <title>Home Page</title>
+    </head>
+<body>
 
-<%- include('../views/partials/header.ejs') %>
 
-      <div class="search">
-      <input type="text" class="search-text" />
-      <button class="search-button">search</button>
+
+    <div class="search-container">
+        <form action="/books/search" method="GET">
+            <input type="text" name="bookTitle" class="search-text" placeholder="Search " />
+            <button type="submit" class="search-button">search</button>
+        </form>
+    </div>
+
+    <div class="books-grid">
+        <% if (typeof books !== 'undefined' && books.length > 0) { %>
+            <% books.slice(0, 3).forEach(book => { %>
+                <div class="book-card">
+                    <a href="/books/<%= book._id %>">
+                        <img src="<%= book.picture %>" alt="<%= book.title %>" class="book-image"/>
+                        <div class="book-title"><%= book.title %></div>
+                    </a>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No books available</p>
+        <% } %>
     </div>
 
 
-    <div class="book">
-<% if (typeof books !== 'undefined' && books.length > 0) { %>
-<% books.forEach(book => { %>
 
-  <a href="/book/<%= book._id %>"> <img src="<%= book.picture %>" alt="<%= book.title %>" class="book-image"/>
-  <div class="book-title"><%= book.title %></div>
-</a>
-
-
-
-
-<% }) %>
-<% } else { %>
-<p> No books available</p>
-<% } %>
-    </div>
-
-
-    <%- include('.../views/footer.ejs') %>
-  </body>
+</body>
 </html>

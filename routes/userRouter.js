@@ -9,7 +9,7 @@ router.get("/home", (req, res) => {
   res.render("../views/home.ejs", { Book })
 })
 router.get("/bookstitle", (req, res) => {
-  res.render("../views/auth/booksTitel")
+  res.render("../views/auth/booksTitel.ejs")
 })
 
 module.exports = router
