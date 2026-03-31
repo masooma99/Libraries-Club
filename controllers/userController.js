@@ -1,6 +1,5 @@
-
-const User = require('../models/User.js')
-
+const User = require("../models/User.js")
+const Book = require("../models/Book")
 
 const testing = async (req, res) => {
   try {
@@ -11,32 +10,19 @@ const testing = async (req, res) => {
   }
 }
 
-
-const getUserById = async (req, res) => {
+const getBookById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id)
+    const book = await Book.findOne({ _id: req.params.id })
 
-    const books = await Book.find({ author: user._id })
+    // res.send(book)
 
-    const data = {
-      _id: user._id,
-      username: user.username,
-      email: user.email,
-      picture: user.picture,
-      typeOfUser: user.typeOfUser,
-      address: user.address,
-      books: books
-    }
-
-   res.render('../views/userPage.ejs', { user: data })
-
+    res.render("../views/auth/booksTitel.ejs", { book })
   } catch (error) {
-    console.error('⚠️ An error has occurred finding a user!', error.message)
+    console.error("⚠️ An error has occurred finding a user!", error.message)
   }
 }
 
-
 module.exports = {
   testing,
-   getUserById
+  getBookById,
 }
