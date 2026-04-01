@@ -40,17 +40,6 @@
   <% } } %>
 </section>
 
-<% if (user._id === book.author._id.toString()) { %>
-
-<form action="/book/<%= book._id %>/edit">
-  <button>Edit</button>
-</form>
-
-<form action="/book/<%= recipe._id %>?_method=DELETE" method="POST">
-  <button type="submit">Delete</button>
-</form>
-
-<% } %>
 
 
 </body>
