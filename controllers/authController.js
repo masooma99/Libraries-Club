@@ -92,7 +92,7 @@ const updatePassword = async (req, res) => {
     user.password = hashedPassword
     // It's critical that this field is updated with the password you hashed with bcrypt, and never the plain text password in req.body.password
     await user.save()
-    res.send(`✅ Your password has been updated, ${user.first}!`)
+    res.send(`✅ Your password has been updated, ${user.username}!`)
     // This can be an EJS page later...
   } catch (error) {
     console.error(
