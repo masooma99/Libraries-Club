@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%=libraryDetails.user.username%></title>
+  <title><%= libraryDetails.user.username %></title>
 </head>
 <body>
   <header>
-    <img src="<%=libraryDetails.user.picture%>" alt="Profile Picture">
-    <h2><%=libraryDetails.user.username%></h2>
-    <%if(libraryDetails.user.typeOfUser ==="Library"){%>
+    <img src="<%= libraryDetails.user.picture %>" alt="Profile Picture">
+    <h2><%= libraryDetails.user.username %></h2>
+
+    <% if (libraryDetails.user.typeOfUser === "Library") { %>
       <a href="/books/create">Add Book</a>
-      <%}%>
+      <div>
+        <a href="<%= `/auth/${user._id}/update-password` %>">Update Password</a>
+      </div>
+    <% } %>
   </header>
   <section>
     <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
@@ -24,5 +28,16 @@
     <%}%>
   </section>
 
+  <section>
+  <% for(let i = 0; i < libraryDetails.userBooks.length; i++) {
+       const book = libraryDetails.userBooks[i];
+       if(book && book._id) { %>
+   <a href="/auth/books/<%= book._id %>">
+      <div>
+        <h3><%= book._id %></h3>
+      </div>
+    </a>
+  <% } } %>
+</section>
 </body>
 </html>
