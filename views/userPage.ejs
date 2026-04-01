@@ -15,9 +15,11 @@
   </header>
   <section>
     <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
+      <hr>
       <a href="/users/<%=libraryDetails.userBooks[i]._id%>">
         <div>
-          <h3><%= libraryDetails.userBooks[i]._id%></h4>
+          <h3><%= libraryDetails.userBooks[i].title%></h3>
+          <img src="<%=libraryDetails.userBooks[i].picture%> " alt="book image" height="80px" width="80px">
         </div>
       </a>
       <a href="/reviews/<%=libraryDetails.userBooks[i]._id%>">Add review</a>
