@@ -6,7 +6,7 @@
   <title><%=libraryDetails.user.username%></title>
 </head>
 <body>
-  <%- include('../views/partials/header.ejs') %>
+
 
   <header>
     <img src="<%=libraryDetails.user.picture%>" alt="Profile Picture">
@@ -24,8 +24,8 @@
     </div>
     <%}%>
   </section>
-<a href="/views/auth/sign-out.ejs"> sign out</a>
+<a href="/views/auth/sign-out"> sign out</a>
+<a href="/home"> home </a>
 
-<%- include('../views/partials/footer.ejs') %>
 </body>
 </html>
