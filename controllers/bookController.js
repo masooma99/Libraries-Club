@@ -82,7 +82,7 @@ const updateBookById = async (req, res) => {
 const deleteBookById = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id)
-    //edit page الصفحة الا نسوي فيها المسح
+
     res.render("../views/ejs")
   } catch (error) {
     console.error("⚠️ Error deleting book:", error.message)
