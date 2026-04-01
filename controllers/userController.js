@@ -44,14 +44,6 @@ const getUserById = async (req, res) => {
   }
 }
 
-// const goHomePage = async (req, res) => {
-//   try {
-//     res.render("../views/home.ejs")
-//   } catch (error) {
-//     console.log(`error: ${error}`)
-//   }
-// }
-
 module.exports = {
   getBookById,
   getUserById,
