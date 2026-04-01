@@ -11,14 +11,7 @@
 <p>Author: <%= book.author %></p>
 <p>Description: <%= book.description %></p>
 
-<% if(user._id.toString() === book.author._id.toString()) { %>
-  <form action="/auth/books/<%= book._id %>/edit">
-    <button>Edit</button>
-  </form>
-  <form action="/auth/books/<%= book._id %>?_method=DELETE" method="POST">
-    <button type="submit">Delete</button>
-  </form>
-<% } %>
+
 </form>
 
 
