@@ -13,20 +13,12 @@ const PORT = process.env.PORT ? process.env.PORT : 3000
 
 const db = require("./db")
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 8010f8d25896eca793f995bebc66408ba57788bb
-=======
->>>>>>> 8fd734880ebe24f6f2731ff56d52ed4aec4d621a
 //require routers
 const authRouter = require("./routes/authRouter")
 const userRouter = require("./routes/userRouter")
 const bookRouter = require("./routes/bookRouter")
 const reviewsRouter = require("./routes/reviewRouter")
-
+const homeRouter = require("./routes/homeRouter")
 const app = express()
 
 app.use(express.json())
@@ -43,11 +35,15 @@ app.use(
   })
 )
 //all use and get will be under here
+app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
+
 app.use(middleware.passUserToView)
 app.use("/auth", authRouter)
 app.use("/users", userRouter)
 app.use("/books", bookRouter)
 app.use("/reviews", reviewsRouter)
+app.use("/", homeRouter)
 
 app.listen(PORT, () => {
   console.log(`Express server is listening on port : ${PORT}`)

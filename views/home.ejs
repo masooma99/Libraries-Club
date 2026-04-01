@@ -9,8 +9,7 @@
     </head>
 <body>
 
-<%- include('../views/partials/header.ejs') %>
-
+<h1> Libraries Club</h1>
     <div class="search-container">
         <form action="/books/search" method="GET">
             <input type="text" name="bookTitle" class="search-text" placeholder="Search " />
@@ -20,7 +19,7 @@
 
     <div class="books-grid">
         <% if (typeof books !== 'undefined' && books.length > 0) { %>
-            <% books.slice(0, 3).forEach(book => { %>
+            <% books.forEach(book => { %>
                 <div class="book-card">
                     <a href="/books/<%= book._id %>">
                         <img src="<%= book.picture %>" alt="<%= book.title %>" class="book-image"/>
@@ -32,7 +31,8 @@
             <p>No books available</p>
         <% } %>
     </div>
-<%- include('../views/partials/footer.ejs') %>
+
+
 
 
 </body>

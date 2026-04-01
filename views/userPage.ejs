@@ -6,17 +6,18 @@
   <title><%= libraryDetails.user.username %></title>
 </head>
 <body>
-
-
+<div class="head">
+<h1> Libraries Club</h1>
+<a href="/home">Home</a>
+</div>
   <header>
-<<<<<<< HEAD
     <img src="<%=libraryDetails.user.picture%>" alt="Profile Picture">
     <h2><%=libraryDetails.user.username%></h2>
     <%if(libraryDetails.user.typeOfUser ==="Library"){%>
       <a href="/books/create">Add Book</a>
       <%}%>
   </header>
-  <h1> Book I added</h1>
+  <h1> Books I added: </h1>
 
   <section>
     <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
@@ -25,12 +26,7 @@
     </div>
     <%}%>
   </section>
-<a href="/views/auth/sign-out"> sign out</a>
-<a href="/home"> home </a>
-=======
-    <img src="<%= libraryDetails.user.picture %>" alt="Profile Picture">
-    <h2><%= libraryDetails.user.username %></h2>
->>>>>>> 8010f8d25896eca793f995bebc66408ba57788bb
+
 
     <% if (libraryDetails.user.typeOfUser === "Library") { %>
       <a href="/books/create">Add Book</a>
@@ -61,5 +57,7 @@
     </a>
   <% } } %>
 </section>
+<a href="/auth/sign-out"> sign out</a>
+
 </body>
 </html>

@@ -3,10 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Create a book</title>
   </head>
   <body>
-    <%- include('../views/partials/header.ejs') %>
     <h2>Create a Book</h2>
     <form action="/books/create" method="POST">
       <input type="text" name="title" placeholder="Title" required /><br />
@@ -17,13 +16,7 @@
         required
       />
       <br />
-
-      <input
-        type="text"
-        name="picture"
-        placeholder="Picture"
-        required
-      />
+      <input type="text" name="picture" placeholder="Picture" required />
       <br />
 
       <h4>Genre:</h4>
@@ -63,14 +56,5 @@
       <br />
       <button type="submit">Create</button>
     </form>
-<<<<<<< HEAD
-    <%- include('.../views/partials/footer.ejs') %>
   </body>
-=======
-
-<<<<<<< HEAD
-    
->>>>>>> 8010f8d25896eca793f995bebc66408ba57788bb
-=======
->>>>>>> 8fd734880ebe24f6f2731ff56d52ed4aec4d621a
 </html>
