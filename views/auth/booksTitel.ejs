@@ -20,7 +20,15 @@
        <img src="<%= bookReviews.users[i].picture %>" alt="user profile picture" height="40px" width="40px">
        <p><%=bookReviews.users[i].username%></p>
        <!-- review: rating, and comment -->
-        <p>Rating: <%=bookReviews.allReviews[i].rating%></p>
+
+          <% let ratingStars = ""
+          for(let i =0;i< bookReviews.allReviews[i].rating;i++){
+          ratingStars=ratingStars+"⭐"%>
+          <%}%>
+          <p>Rating:
+          <%=bookReviews.allReviews[i].rating%>
+          <%=ratingStars%>
+        </p>
         <p>Comment: <%=bookReviews.allReviews[i].comment%></p>
     </div>
     <br>
