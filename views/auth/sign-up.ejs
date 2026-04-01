@@ -4,40 +4,144 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+        background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        color: rgb(234, 236, 241);
+      }
+
+      .signup {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        width: 350px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 30px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+      }
+
+      .radio-group {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 10px;
+        border-radius: 5px;
+        margin: 5px 0;
+      }
+
+      .radio-group h4 {
+        margin: 0 0 5px 0;
+        font-size: 14px;
+        opacity: 0.8;
+      }
+
+      label {
+        font-size: 14px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      .login {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 13px;
+      }
+      .login a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      h4 {
+        margin-top: 20px;
+        font-weight: normal;
+        color: #7f8c8d;
+      }
+    </style>
   </head>
   <body>
-    <h4>Sign in <a href="/auth/sign-in">here</a>.</h4>
-    <h2>Sign Up</h2>
-    <form action="/auth/sign-up" method="POST">
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        required
-      /><br />
-      <input type="email" name="email" placeholder="Email" required /><br />
-      <input type="text" name="picture" placeholder="Profile Picture URL" />
+    <div class="signup">
+      <h2>Create Account</h2>
+      <form action="/auth/sign-up" method="POST">
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="picture" placeholder="Profile Picture URL" />
+        <div class="radio-group">
+          <h5>Type Of User:</h5>
+          <input type="radio" id="library" name="typeOfUser" value="Library" />
+          <label for="library">Library</label>
+          <input
+            type="radio"
+            id="normalUser"
+            name="typeOfUser"
+            value="Normal"
+          />
+          <label for="normalUser">Normal User</label>
+        </div>
 
-      <h4>Type Of User:</h4>
-      <input type="radio" id="library" name="typeOfUser" value="Library" />
-      <label for="library">Library</label><br />
-      <input type="radio" id="normalUser" name="typeOfUser" value="Normal" />
-      <label for="normalUser">Normal User</label><br />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          required
+        />
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        required
-      /><br />
-      <input
-        type="password"
-        name="confirmPassword"
-        placeholder="Confirm Password"
-        required
-      />
-      <br />
-      <button type="submit">Register</button>
-    </form>
+        <button type="submit">Register</button>
+      </form>
+
+      <div class="login">
+        <h4>Already have an account<a href="/auth/sign-in"> Login</a></h4>
+      </div>
+    </div>
   </body>
 </html>

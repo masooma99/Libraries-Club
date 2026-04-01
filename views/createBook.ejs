@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Create a book</title>
   </head>
   <body>
-    <h2>Create A Book</h2>
+    <div class="head">
+      <h1>Libraries Club</h1>
+      <a href="/home">Home</a>
+    </div>
+    <h2>Create a Book</h2>
     <form action="/books/create" method="POST">
       <input type="text" name="title" placeholder="Title" required /><br />
       <input
@@ -34,12 +38,15 @@
       <label for="history">History</label><br />
 
       <input type="radio" id="crime" name="genre" value="Crime" />
-      <label for="crime">Crime</label><br /><br />
+      <label for="crime">Crime</label><br />
 
+      <input type="radio" id="Psychology" name="genre" value="Psychology" />
+      <label for="Psychology">Psychology</label><br />
+      <br />
       <input
         type="number"
         name="numOfPages"
-        placeholder="numOfPages"
+        placeholder="num Of Pages"
         required
       />
       <br />
@@ -50,6 +57,7 @@
         placeholder="number Of Copies"
         required
       />
+      <br />
       <br />
       <button type="submit">Create</button>
     </form>
