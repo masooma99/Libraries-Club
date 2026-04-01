@@ -8,13 +8,21 @@
   <body>
     <h2><%= bookReviews.book.title %></h2>
     <p>ID: <%= bookReviews.book._id %></p>
-    <img src="<%= bookReviews.book.picture %>" alt="">
+    <img src="<%= bookReviews.book.picture %>" alt="book image">
     <p>Author: <%= bookReviews.book.author %></p>
     <p>Description: <%= bookReviews.book.description %></p>
-  </body>
+    <h2>reviews</h2>
+
   <%for(let i=0; i<bookReviews.allReviews.length; i++){%>
-    <div>
-      <h1>num <%=i%></h1>
+    <div style="border: 2px solid black;  padding: auto;">
+      <!-- user: username, and image -->
+       <img src="<%= bookReviews.users[i].picture %>" alt="user profile picture" height="40px" width="40px">
+       <p><%=bookReviews.users[i].username%></p>
+       <!-- review: rating, and comment -->
+        <p>Rating: <%=bookReviews.allReviews[i].rating%></p>
+        <p>Comment: <%=bookReviews.allReviews[i].comment%></p>
     </div>
+    <br>
   <%}%>
+</body>
 </html>
