@@ -1,11 +1,20 @@
 const User = require("../models/User")
 const Book = require("../models/Book")
+const Review = require("../models/Review")
 const LibraryBook = require("../models/LibraryBook")
 
 const getBookById = async (req, res) => {
   try {
     const book = await Book.findOne({ _id: req.params.id })
-    res.render("../views/auth/booksTitel.ejs", { book })
+    const allReviews = await Review.find({ _id: book.id })
+    console.log(book)
+    console.log(allReviews)
+
+    let bookReviews = {
+      allReviews: allReviews,
+      book: book,
+    }
+    res.render("../views/auth/booksTitel.ejs", { bookReviews })
   } catch (error) {
     console.error("⚠️ An error has occurred finding a user!", error.message)
   }
@@ -17,7 +26,7 @@ const getUserById = async (req, res) => {
     const userBooks = await LibraryBook.find({ user: user })
 
     let books_detail = []
-    for (let i = 0; i < userBooks.length; i++) {
+    for (let i = 0; i < userBooks.length - 1; i++) {
       const book_details = await Book.findOne({ _id: userBooks[i].book._id })
       books_detail.push(book_details)
     }
