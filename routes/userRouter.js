@@ -4,7 +4,7 @@ const router = express.Router()
 const userController = require("../controllers/userController")
 
 
-router.get("/:id", userController.getBookById)
+router.get("/books/:id", userController.getBookById)
 
 router.get("/", userController.getUserById)
 

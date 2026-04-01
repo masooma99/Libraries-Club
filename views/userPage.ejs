@@ -28,7 +28,7 @@
     <%}%>
   </section>
 
-  <section>
+   <section>
   <% for(let i = 0; i < libraryDetails.userBooks.length; i++) {
        const book = libraryDetails.userBooks[i];
        if(book && book._id) { %>
@@ -39,5 +39,19 @@
     </a>
   <% } } %>
 </section>
+
+<% if (user._id === book.author._id.toString()) { %>
+
+<form action="/book/<%= book._id %>/edit">
+  <button>Edit</button>
+</form>
+
+<form action="/book/<%= recipe._id %>?_method=DELETE" method="POST">
+  <button type="submit">Delete</button>
+</form>
+
+<% } %>
+
+
 </body>
 </html>

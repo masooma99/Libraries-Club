@@ -13,5 +13,8 @@ router.get("/sign-in", (req, res) => {
 })
 router.post("/sign-out", authController.signOutUser)
 router.put("/:id", authController.updatePassword)
+router.get("/:id/update-password", (req, res) => {
+  res.render("auth/update-password.ejs")
+})
 
 module.exports = router
