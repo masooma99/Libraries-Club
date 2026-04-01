@@ -43,7 +43,7 @@ const createBook = async (req, res) => {
       user: user,
       userBooks: books_detail,
     }
-    console.log(userBooks)
+    // console.log(userBooks)
     req.session.save(() => {
       return res.render("../views/userPage.ejs", { libraryDetails })
     })
@@ -63,30 +63,27 @@ const getAllBook = async (req, res) => {}
 
 const getAllBooksByLibraryId = async (req, res) => {}
 
-
 const updateBookById = async (req, res) => {
   try {
-    const book = await Book.findByIdAndUpdate(
-      req.params.id,
-      req.body,{ returnDocument: "after" })
+    const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
+      returnDocument: "after",
+    })
 
     res.redirect(`/books/${book._id}`)
   } catch (error) {
-    console.error('⚠️ An error has occurred updating a book!', error.message)
+    console.error("⚠️ An error has occurred updating a book!", error.message)
   }
 }
 
 const deleteBookById = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id)
-      //edit page الصفحة الا نسوي فيها المسح
-    res.render('../views/ejs')
+    //edit page الصفحة الا نسوي فيها المسح
+    res.render("../views/ejs")
   } catch (error) {
-    console.error('⚠️ Error deleting book:', error.message)
+    console.error("⚠️ Error deleting book:", error.message)
   }
 }
-
-
 
 module.exports = {
   createBook,
@@ -94,5 +91,5 @@ module.exports = {
   getAllBook,
   getAllBooksByLibraryId,
   updateBookById,
-  deleteBookById
+  deleteBookById,
 }
