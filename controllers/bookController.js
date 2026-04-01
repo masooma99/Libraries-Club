@@ -20,6 +20,7 @@ const createBook = async (req, res) => {
         genre: req.body.genre,
         numOfPages: req.body.numOfPages,
         author: req.body.author,
+        picture: req.body.picture,
       })
       tempBook = newBook
     }
