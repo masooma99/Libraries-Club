@@ -45,6 +45,7 @@ const createReview = async (req, res) => {
       allReviews: allReviews,
       users: usersReview,
       book: book,
+      user: user,
     }
     console.log(usersReview)
 
