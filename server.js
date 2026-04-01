@@ -34,16 +34,18 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
   })
 )
-//all use and get will be under here
+
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
+
+//all use and get will be under here
 
 app.use(middleware.passUserToView)
 app.use("/auth", authRouter)
 app.use("/users", userRouter)
 app.use("/books", bookRouter)
 app.use("/reviews", reviewsRouter)
-app.use("/", homeRouter)
+app.use("/home", homeRouter)
 
 app.listen(PORT, () => {
   console.log(`Express server is listening on port : ${PORT}`)
