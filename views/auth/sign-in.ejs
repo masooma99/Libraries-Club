@@ -3,9 +3,93 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/auth/style.css" />
 
     <title>login</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+        background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+        color: white;
+      }
+
+      h1 {
+        color: #a0a5a9;
+        margin-bottom: 10px;
+      }
+
+      form {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      h2 {
+        margin-bottom: 25px;
+        color: #e6ebef;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      input {
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        border-color: #3498db;
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      h4 {
+        margin-top: 20px;
+        font-weight: normal;
+        color: #7f8c8d;
+      }
+
+      h4 a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      h4 a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
     <h1>Welcome to Libraries Club</h1>
