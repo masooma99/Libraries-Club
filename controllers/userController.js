@@ -7,13 +7,13 @@ const getBookById = async (req, res) => {
   try {
     const book = await Book.findOne({ _id: req.params.id })
     const allReviews = await Review.find({ _id: book.id })
-    console.log(book)
-    console.log(allReviews)
+    // console.log(book)
 
     let bookReviews = {
       allReviews: allReviews,
       book: book,
     }
+    console.log(allReviews)
     res.render("../views/auth/booksTitel.ejs", { bookReviews })
   } catch (error) {
     console.error("⚠️ An error has occurred finding a user!", error.message)
