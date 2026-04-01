@@ -12,6 +12,7 @@
 
     <% if (libraryDetails.user.typeOfUser === "Library") { %>
       <a href="/books/create">Add Book</a>
+      <a href="/auth/sign-out">sign out</a>
       <div>
         <a href="<%= `/auth/${user._id}/update-password` %>">Update Password</a>
       </div>
@@ -29,18 +30,6 @@
       <a href="/reviews/<%=libraryDetails.userBooks[i]._id%>">Add review</a>
     <%}%>
   </section>
-
-  <section>
-  <% for(let i = 0; i < libraryDetails.userBooks.length; i++) {
-       const book = libraryDetails.userBooks[i];
-       if(book && book._id) { %>
-   <a href="/auth/books/<%= book._id %>">
-      <div>
-        <h3><%= book._id %></h3>
-      </div>
-    </a>
-  <% } } %>
-</section>
 </body>
 </html>
 

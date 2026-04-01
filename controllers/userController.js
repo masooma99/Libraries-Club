@@ -17,7 +17,7 @@ const getUserById = async (req, res) => {
     const userBooks = await LibraryBook.find({ user: user })
 
     let books_detail = []
-    for (let i = 0; i < userBooks.length; i++) {
+    for (let i = 0; i < userBooks.length - 1; i++) {
       const book_details = await Book.findOne({ _id: userBooks[i].book._id })
       books_detail.push(book_details)
     }

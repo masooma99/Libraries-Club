@@ -62,7 +62,7 @@ const signInUser = async (req, res) => {
 const signOutUser = async (req, res) => {
   try {
     req.session.destroy(() => {
-      res.redirect("/")
+      res.redirect("/auth/sign-in")
     })
   } catch (error) {
     res.send(`error: ${error}`)
