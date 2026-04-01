@@ -7,9 +7,4 @@ router.get("/:id", userController.getBookById)
 
 router.get("/", userController.getUserById)
 
-router.get("/home", (req, res) => {
-  console.log("home page")
-  res.render("../views/home.ejs", { Book })
-})
-
 module.exports = router
