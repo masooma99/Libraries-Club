@@ -1,6 +1,7 @@
 const Book = require("../models/Book")
 const LibraryBook = require("../models/LibraryBook")
 const User = require("../models/User")
+// const userDiv = document.querySelectorAll(".userBook")
 
 const createBook = async (req, res) => {
   try {
@@ -43,6 +44,8 @@ const createBook = async (req, res) => {
     const libraryDetails = {
       user: user,
       userBooks: books_detail,
+      Book: Book,
+      LibraryBook: LibraryBook,
     }
     // console.log(userBooks)
     req.session.save(() => {
@@ -79,7 +82,7 @@ const updateBookById = async (req, res) => {
 const deleteBookById = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id)
-    //edit page الصفحة الا نسوي فيها المسح
+
     res.render("../views/ejs")
   } catch (error) {
     console.error("⚠️ Error deleting book:", error.message)
