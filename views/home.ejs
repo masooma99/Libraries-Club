@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="search">
+      <input type="text" class="search-text" />
+      <button class="search-button">search></button>
+    </div>
+
+    <div class="book">
+<% if (typeof books !== 'undefined' && books.length > 0) { %>
+<% books.forEach(book => { %>
+<div class="book-card">
+  <a href="/books<%= book.id %>" >
+
+<img src="<%= book.imageURL %>" alt="<%= book.title %>" class="book-image"/>
+
+  </a>
+<div class="book-title"><%= book.title %></div>
+
+</div>
+<% }) %>
+<% } else { %>
+<p> No books available</p>
+<% } %>
+    </div>
+
+  </body>
+</html>

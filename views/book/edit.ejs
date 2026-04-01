@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<h2>Edit Book</h2>
+
+<form action="/books/<%= book._id %>?_method=PUT" method="POST">
+
+  <input
+    type="text"
+    name="title"
+    value="<%= book.title %>"
+    required
+  />
+  <br />
+
+
+  <textarea name="description" required><%= book.description %></textarea>
+  <br />
+
+
+  <h4>Genre:</h4>
+
+  <input type="radio" name="genre" value="Fantasy"
+    <%= book.genre === 'Fantasy' ? 'checked' : '' %> />
+  Fantasy <br />
+
+  <input type="radio" name="genre" value="Romance"
+    <%= book.genre === 'Romance' ? 'checked' : '' %> />
+  Romance <br />
+
+  <input type="radio" name="genre" value="Horror"
+    <%= book.genre === 'Horror' ? 'checked' : '' %> />
+  Horror <br />
+
+  <input type="radio" name="genre" value="History"
+    <%= book.genre === 'History' ? 'checked' : '' %> />
+  History <br />
+
+  <input type="radio" name="genre" value="Crime"
+    <%= book.genre === 'Crime' ? 'checked' : '' %> />
+  Crime <br /><br />
+
+
+  <input
+    type="number"
+    name="numOfPages"
+    value="<%= book.numOfPages %>"
+    required
+  />
+  <br />
+
+
+  <input
+    type="text"
+    name="author"
+    value="<%= book.author %>"
+    required
+  />
+  <br />
+
+
+  <input
+    type="number"
+    name="numOfCopies"
+    value="<%= book.numOfCopies %>"
+    required
+  />
+  <br />
+
+  <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

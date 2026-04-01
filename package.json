@@ -1,11 +1,12 @@
 {
   "name": "libraries-club",
   "version": "1.0.0",
-  "description": "",
+  "description": "The website will initially include 20 books with detailed descriptions and essential information such as the author, genre, description and ratings..\r users will be able to add new books to the platform, write descriptions and share their opinions. other users can comment on each book, creating an interactive and engaging reading community.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,7 @@
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "method-override": "^3.0.0",
-    "mongoose": "^9.2.3",
+    "mongoose": "^9.3.3",
     "morgan": "^1.10.1"
   }
 }
