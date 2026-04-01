@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <% console.log(book.author._id) %>
+<% console.log(user._id) %>
+
+<h2><%= book.title %></h2>
+
+<% if(book.image){ %>
+  <img src="<%= book.image %>" alt="<%= book.title %>" width="300" />
+<% } %>
+
+<p><%= book.description %></p>
+
+<% if (user._id.toString() === book.author._id.toString()) { %>
+  <form action="/books/<%= book._id %>/edit">
+    <button>Edit</button>
+  </form>
+
+  <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+  </form>
+<% } %>
+</body>
+</html>

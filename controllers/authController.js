@@ -50,19 +50,9 @@ const signInUser = async (req, res) => {
       email: user.email,
       _id: user._id,
     }
-    let books_detail = []
-    for (let i = 0; i < userBooks.length; i++) {
-      const book_details = await Book.findOne({ _id: userBooks[i].book._id })
-      books_detail.push(book_details)
-    }
-    const libraryDetails = {
-      user: user,
-      userBooks: books_detail,
-    }
-
     //save the session object and sending a response
     req.session.save(() => {
-      res.render("../views/userPage.ejs", { libraryDetails })
+      res.redirect("/users/")
     })
   } catch (error) {
     res.send(`error: ${error}`)
@@ -100,6 +90,7 @@ const updatePassword = async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(req.body.newPassword, 12)
     user.password = hashedPassword
+    // It's critical that this field is updated with the password you hashed with bcrypt, and never the plain text password in req.body.password
     await user.save()
     res.send(`✅ Your password has been updated, ${user.first}!`)
     // This can be an EJS page later...
