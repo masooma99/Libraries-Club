@@ -7,7 +7,7 @@
   </head>
   <body>
     <h2>Add Your Review For <%=book.title%></h2>
-    <form action="/books/<%=book.id%>" method="POST">
+    <form action="/users/<%=book.id%>" method="GET">
       <h4>from 0 to 5 what would you rate this book:</h4>
       <br />
       <input type="number" name="rating" min="0" max="5" required /><br />
