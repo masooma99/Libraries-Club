@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review Page</title>
+  </head>
+  <body>
+    <h2>Add Your Review For <%=book.title%></h2>
+    <form action="/reviews/<%=book.id%>" method="POST">
+      <h4>from 0 to 5 what would you rate this book:</h4>
+      <br />
+      <input type="number" name="rating" min="0" max="5" required /><br />
+      <h4>Add a comment!</h4>
+      <input type="text" name="comment" required /> <br />
+      <br />
+      <button type="submit">Create</button>
+    </form>
+  </body>
+</html>

@@ -15,18 +15,16 @@
 <p>Author: <%= book.author %></p>
 <p>Description: <%= book.description %></p>
 
-<% if(user._id.toString() === book.author._id.toString()) { %>
-  <form action="/auth/books/<%= book._id %>/edit">
-    <button>Edit</button>
-  </form>
-  <form action="/auth/books/<%= book._id %>?_method=DELETE" method="POST">
-    <button type="submit">Delete</button>
-  </form>
-<% } %>
-</form>
-
-
-
-
-  </body>
+  <%for(let i=0; i<bookReviews.allReviews.length; i++){%>
+    <div style="border: 2px solid black;  padding: auto;">
+      <!-- user: username, and image -->
+       <img src="<%= bookReviews.users[i].picture %>" alt="user profile picture" height="40px" width="40px">
+       <p><%=bookReviews.users[i].username%></p>
+       <!-- review: rating, and comment -->
+        <p>Rating: <%=bookReviews.allReviews[i].rating%></p>
+        <p>Comment: <%=bookReviews.allReviews[i].comment%></p>
+    </div>
+    <br>
+  <%}%>
+</body>
 </html>

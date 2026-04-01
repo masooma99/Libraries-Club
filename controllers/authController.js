@@ -50,9 +50,12 @@ const signInUser = async (req, res) => {
       email: user.email,
       _id: user._id,
     }
+    const books = await Book.find()
+    // console.log(Book)
     //save the session object and sending a response
     req.session.save(() => {
       res.redirect("/users/")
+      // res.render("../views/home.ejs")
     })
   } catch (error) {
     res.send(`error: ${error}`)
@@ -62,7 +65,7 @@ const signInUser = async (req, res) => {
 const signOutUser = async (req, res) => {
   try {
     req.session.destroy(() => {
-      res.redirect("/")
+      res.redirect("/auth/sign-in")
     })
   } catch (error) {
     res.send(`error: ${error}`)
@@ -92,7 +95,7 @@ const updatePassword = async (req, res) => {
     user.password = hashedPassword
     // It's critical that this field is updated with the password you hashed with bcrypt, and never the plain text password in req.body.password
     await user.save()
-    res.send(`✅ Your password has been updated, ${user.first}!`)
+    res.send(`✅ Your password has been updated, ${user.username}!`)
     // This can be an EJS page later...
   } catch (error) {
     console.error(
