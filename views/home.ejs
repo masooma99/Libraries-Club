@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="/style.css" />
     <title>Home Page</title>
      <style>
+        .profile {
+            padding: 12px 20px;
+            background: #f7e8e8;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -132,7 +142,9 @@
 <body>
 
 <h1>Libraries Club</h1>
-
+<div class="profile">
+<a href="/users/">profile</a>
+</div>
 <div class="search-container">
     <form action="/books/search" method="GET">
         <input type="text" name="bookTitle" class="search-text" placeholder="Search " />

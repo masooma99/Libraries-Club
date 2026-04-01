@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 })
 
 router.get("/search", async (req, res) => {
-  const book = await Book.findOne({ title: req.query.bookTitle })
+  const book = await Book.findOne()
   res.render("bookstitel", { book: book })
 })
 
