@@ -4,6 +4,8 @@ const Review = require("../models/Review")
 
 const getBookById = async (req, res) => {
   try {
+    //this function is for thr review form
+
     // const book = await Book.findOne({ _id: req.params.id })
     const book = await Book.findOne({ _id: req.params.id })
     // const allReviews = await Review.find({ _id: book.id })
@@ -30,7 +32,7 @@ const createReview = async (req, res) => {
       user: user,
       book: book,
     })
-    const allReviews = await Review.find({ _id: book.id })
+    const allReviews = await Review.find({ book: book.id })
 
     let bookReviews = {
       allReviews: allReviews,
