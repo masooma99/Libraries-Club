@@ -14,12 +14,12 @@ router.get("/", async (req, res) => {
 
 router.get("/search", async (req, res) => {
   const book = await Book.findOne({ title: req.query.bookTitle })
-  res.render("bookstitle", { books: books })
+  res.render("bookstitle", { book: book })
 })
 
 router.get("/title/:id", async (req, res) => {
   const book = await Book.findById(req.params.id)
-  res.render("bookstitel", { book: book, user: req.session.user })
+  res.render("bookstitel", { book: book })
 })
 
 module.exports = router
