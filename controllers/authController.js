@@ -50,9 +50,12 @@ const signInUser = async (req, res) => {
       email: user.email,
       _id: user._id,
     }
+    const books = await Book.find()
+    // console.log(Book)
     //save the session object and sending a response
     req.session.save(() => {
       res.redirect("/users/")
+      // res.render("../views/home.ejs")
     })
   } catch (error) {
     res.send(`error: ${error}`)
