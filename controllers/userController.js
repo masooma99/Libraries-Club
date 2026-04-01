@@ -5,7 +5,11 @@ const LibraryBook = require("../models/LibraryBook")
 const getBookById = async (req, res) => {
   try {
     const book = await Book.findOne({ _id: req.params.id })
+<<<<<<< HEAD
+    res.render("auth/booksTitel.ejs", { book })
+=======
     res.render("../views/auth/booksTitel.ejs", { book })
+>>>>>>> 7b2af86d22964e02eddbb381e7ca0ac3ed62ba6f
   } catch (error) {
     console.error("⚠️ An error has occurred finding a user!", error.message)
   }

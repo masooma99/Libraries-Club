@@ -13,6 +13,6 @@ router.delete("/:id", bookController.deleteBookById)
 router.get("/:id/edit", async (req, res) => {
   const book = await Book.findById(req.params.id)
 
-  res.render("books/edit", { book })
+  res.render("../views/book/edit.ejs", { book })
 })
 module.exports = router
