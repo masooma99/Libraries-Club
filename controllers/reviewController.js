@@ -34,10 +34,19 @@ const createReview = async (req, res) => {
     })
     const allReviews = await Review.find({ book: book.id })
 
+    let usersReview = []
+    let userData
+    for (let i = 0; i < allReviews.length; i++) {
+      userData = await User.findOne({ _id: allReviews[i].user })
+      usersReview.push(userData)
+    }
+
     let bookReviews = {
       allReviews: allReviews,
+      users: usersReview,
       book: book,
     }
+    console.log(usersReview)
 
     // req.session.save(() => {
     res.render("../views/auth/booksTitel.ejs", { bookReviews })
