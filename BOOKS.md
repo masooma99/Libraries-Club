@@ -132,24 +132,6 @@ Adventure
 author: J.K. Rowling
 number of pages: 333pages
 
-## The Fault in Our Stars
-Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel's story is about to be completely rewritten.
-
-Genres
-Young Adult
-Romance
-Fiction
-Contemporary
-Realistic Fiction
-Book Club
-Coming Of Age
-Teen
-Drama
-Novels
-
-author: John Green
-
-number of pages: 313pages
 
 ## The Power of Habit
 

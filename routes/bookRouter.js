@@ -15,4 +15,9 @@ router.get("/:id/edit", async (req, res) => {
 
   res.render("../views/book/edit.ejs", { book })
 })
+
+/* router.get("/search", (req, res) => {
+  res.render("../views/auth/bookstitel.ejs")
+}) */
+
 module.exports = router
