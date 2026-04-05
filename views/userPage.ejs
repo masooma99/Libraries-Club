@@ -3,353 +3,336 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= libraryDetails.user.username %></title>
+  <title><%= libraryDetails.user.username %> - Libraries Club</title>
   <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
-  min-height: 100vh;
-  padding: 20px;
-}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-.head {
-  text-align: center;
-  margin-bottom: 30px;
-}
+    .head {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-.head h1 {
-  text-align: center;
-  color: white;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
+    .head h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
 
-.head a {
-  display: inline-block;
-  color: white;
-  text-decoration: none;
-  background: #ff6b6b;
-  padding: 10px 25px;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: background 0.3s;
-}
+    .head a {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      background: #ff6b6b;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
 
-.head a:hover {
-  background: #ff5252;
-}
+    .head a:hover {
+      background: #ff5252;
+      transform: translateY(-2px);
+    }
 
-header {
-  background: white;
-  border-radius: 15px;
-  padding: 30px;
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
+    /* Profile Header */
+    .profile-header {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
 
-header img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #ff6b6b;
-  margin-bottom: 15px;
-}
+    .profile-header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ff6b6b;
+      margin-bottom: 15px;
+    }
 
-header h2 {
-  color: #333;
-  font-size: 28px;
-  margin-bottom: 15px;
-}
+    .profile-header h2 {
+      color: #333;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
 
-header a {
-  display: inline-block;
-  background: linear-gradient(135deg, #ff6b6b, #ff5252);
-  color: white;
-  text-decoration: none;
-  padding: 10px 25px;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: transform 0.3s;
-}
+    .profile-header .add-book-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6b6b, #ff5252);
+      color: white;
+      text-decoration: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
 
-header a:hover {
-  transform: translateY(-2px);
-}
+    .profile-header .add-book-btn:hover {
+      transform: translateY(-2px);
+    }
 
-body > h1:first-of-type {
-  text-align: center;
-  color: white;
-  font-size: 2rem;
-  margin: 40px 0 20px;
-  position: relative;
-}
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      margin: 40px 0 20px;
+      position: relative;
+    }
 
-body > h1:first-of-type:after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: #ff6b6b;
-  border-radius: 2px;
-}
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #ff6b6b;
+      border-radius: 2px;
+    }
 
-section {
-  max-width: 1200px;
-  margin: 30px auto;
-  padding: 0 20px;
-}
+    /* Books Grid - Titles Only */
+    .titles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
 
-section:first-of-type {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  margin-bottom: 40px;
-}
+    .title-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
 
-section:first-of-type > div {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
+    .title-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
 
-section:first-of-type > div:hover {
-  transform: translateY(-5px);
-}
+    .title-card h3 {
+      color: #333;
+      font-size: 18px;
+    }
 
-section:first-of-type h3 {
-  color: #333;
-  font-size: 18px;
-}
+    /* Books Grid - With Images */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
 
-section:nth-of-type(2) {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
-}
+    .book-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
 
-section:nth-of-type(2) > div {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
 
-section:nth-of-type(2) > div:hover {
-  transform: translateY(-5px);
-}
+    .book-card a {
+      text-decoration: none;
+    }
 
-section:nth-of-type(2) img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
+    .book-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
 
-section:nth-of-type(2) h3 {
-  padding: 15px;
-  text-align: center;
-  color: #333;
-}
+    .book-card h3 {
+      padding: 15px;
+      text-align: center;
+      color: #333;
+    }
 
-section:nth-of-type(2) a {
-  text-decoration: none;
-}
+    .review-link {
+      display: block;
+      margin: 10px 15px 15px;
+      padding: 10px;
+      background: linear-gradient(135deg, #ff6b6b, #ff5252);
+      color: white;
+      text-align: center;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
 
-section:nth-of-type(2) a[href*="/reviews/"] {
-  display: block;
-  margin: 10px 15px 15px;
-  padding: 10px;
-  background: linear-gradient(135deg, #ff6b6b, #ff5252);
-  color: white;
-  text-align: center;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: transform 0.3s;
-}
+    .review-link:hover {
+      transform: translateY(-2px);
+    }
 
-section:nth-of-type(2) a[href*="/reviews/"]:hover {
-  transform: translateY(-2px);
-}
+    /* Action Buttons */
+    .action-buttons {
+      text-align: center;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-hr {
-  display: none;
-}
+    .sign-out-btn {
+      display: inline-block;
+      background: #e74c3c;
+      color: white;
+      text-decoration: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
 
-body > a,
-body > div:not(.head) {
-  text-align: center;
-  margin: 20px auto;
-}
+    .sign-out-btn:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+    }
 
-a[href="/auth/sign-out"] {
-  display: inline-block;
-  background: #e74c3c;
-  color: white;
-  text-decoration: none;
-  padding: 10px 25px;
-  border-radius: 25px;
-  font-weight: bold;
-  margin: 10px;
-  transition: background 0.3s;
-}
+    .update-password-btn {
+      display: inline-block;
+      background: #f39c12;
+      color: white;
+      text-decoration: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
 
-a[href="/auth/sign-out"]:hover {
-  background: #c0392b;
-}
+    .update-password-btn:hover {
+      background: #e67e22;
+      transform: translateY(-2px);
+    }
 
-a[href*="update-password"] {
-  display: inline-block;
-  background: #f39c12;
-  color: white;
-  text-decoration: none;
-  padding: 10px 25px;
-  border-radius: 25px;
-  font-weight: bold;
-  margin: 10px;
-  transition: background 0.3s;
-}
+    /* Book IDs Section */
+    .ids-section {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 40px auto;
+    }
 
-a[href*="update-password"]:hover {
-  background: #e67e22;
-}
+    .ids-section a {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-family: monospace;
+      transition: all 0.3s ease;
+    }
 
-body > div:not(.head) {
-  text-align: center;
-  margin: 20px auto;
-}
+    .ids-section a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
 
-section:last-of-type {
-  background: rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 20px;
-  margin-top: 40px;
-}
+    @media (max-width: 768px) {
+      .head h1 {
+        font-size: 1.8rem;
+      }
 
-section:last-of-type a {
-  display: inline-block;
-  background: rgba(255,255,255,0.2);
-  color: white;
-  text-decoration: none;
-  padding: 8px 15px;
-  margin: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  font-family: monospace;
-  transition: background 0.3s;
-}
+      .profile-header {
+        padding: 20px;
+        margin: 0 15px 30px;
+      }
 
-section:last-of-type a:hover {
-  background: rgba(255,255,255,0.3);
-}
+      .profile-header img {
+        width: 100px;
+        height: 100px;
+      }
 
-section:last-of-type h3 {
-  display: inline;
-  font-size: 12px;
-  font-weight: normal;
-}
+      .profile-header h2 {
+        font-size: 22px;
+      }
 
-@media (max-width: 768px) {
-  .head h1 {
-    font-size: 1.8rem;
-  }
+      .section-title {
+        font-size: 1.5rem;
+      }
 
-  header {
-    padding: 20px;
-    margin: 0 15px 30px;
-  }
+      .titles-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
 
-  header img {
-    width: 100px;
-    height: 100px;
-  }
-
-  header h2 {
-    font-size: 22px;
-  }
-
-  section:first-of-type {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
-
-  section:nth-of-type(2) {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-}
+      .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
-<div class="head">
-<h1> Libraries Club</h1>
-<a href="/home">Home</a>
-</div>
-  <header>
-    <img src="<%=libraryDetails.user.picture%>" alt="Profile Picture">
-    <h2><%=libraryDetails.user.username%></h2>
-    <%if(libraryDetails.user.typeOfUser ==="Library"){%>
-      <a href="/books/create">Add Book</a>
-      <%}%>
-  </header>
-  <h1> Books I added: </h1>
+  <div class="head">
+    <h1> Libraries Club</h1>
+    <a href="/"> Home</a>
+  </div>
 
-  <section>
-    <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
-    <div>
-      <h3><%= libraryDetails.userBooks[i].title%></h4>
-    </div>
-    <%}%>
-  </section>
+  <div class="profile-header">
+    <img src="<%= libraryDetails.user.picture %>" alt="Profile Picture">
+    <h2><%= libraryDetails.user.username %></h2>
+    <% if(libraryDetails.user.typeOfUser === "Library") { %>
+      <a href="/books/create" class="add-book-btn"> Add Book</a>
+    <% } %>
+  </div>
+
+  <h1 class="section-title"> Books I Added</h1>
 
 
-    <% if (libraryDetails.user.typeOfUser === "Library") { %>
-      <a href="/books/create">Add Book</a>
-      <a href="/auth/sign-out">sign out</a>
-      <div>
-        <a href="<%= `/auth/${user._id}/update-password` %>">Update Password</a>
+
+ <div class="books-grid">
+    <% for(let i = 0; i < libraryDetails.userBooks.length; i++) { %>
+      <div class="book-card">
+        <a href="/title/<%= libraryDetails.userBooks[i]._id %>">
+          <img src="<%= libraryDetails.userBooks[i].picture %>" alt="<%= libraryDetails.userBooks[i].title %>">
+          <h3><%= libraryDetails.userBooks[i].title %></h3>
+        </a>
+
+        <a href="/reviews/<%= libraryDetails.userBooks[i]._id %>" class="review-link"> Add Review</a>
       </div>
     <% } %>
-  </header>
-  <section>
-    <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
-      <hr>
-      <a href="/users/<%=libraryDetails.userBooks[i]._id%>">
-        <div>
-          <h3><%= libraryDetails.userBooks[i].title%></h3>
-          <img src="<%=libraryDetails.userBooks[i].picture%> " alt="book image" height="80px" width="80px">
-        </div>
-      </a>
-      <a href="/reviews/<%=libraryDetails.userBooks[i]._id%>">Add review</a>
-    <%}%>
-  </section>
+  </div>
 
-  <section>
-  <% for(let i = 0; i < libraryDetails.userBooks.length; i++) {
-       const book = libraryDetails.userBooks[i];
-       if(book && book._id) { %>
-   <a href="/auth/books/<%= book._id %>">
-      <div>
-        <h3><%= book._id %></h3>
-      </div>
-    </a>
-  <% } } %>
-</section>
-<a href="/auth/sign-out"> sign out</a>
 
+
+  <% if (libraryDetails.user.typeOfUser === "Library") { %>
+    <div class="action-buttons">
+      <a href="/auth/sign-out" class="sign-out-btn"> Sign Out</a>
+      <a href="/auth/<%= libraryDetails.user._id %>/update-password" class="update-password-btn"> Update Password</a>
+    </div>
+  <% } %>
 </body>
 </html>
-

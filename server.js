@@ -48,7 +48,7 @@ app.use("/auth", authRouter)
 app.use("/users", userRouter)
 app.use("/books", bookRouter)
 app.use("/reviews", reviewsRouter)
-app.use("/home", homeRouter)
+app.use("/", homeRouter)
 
 app.listen(PORT, () => {
   console.log(`Express server is listening on port : ${PORT}`)
