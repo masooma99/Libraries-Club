@@ -24,7 +24,7 @@ const registerUser = async (req, res) => {
         typeOfUser: req.body.typeOfUser,
         address: req.body.address,
       })
-      res.redirect("/auth/sign-in")
+      res.redirect("auth/sign-in")
       //this will also render to ejs page later
     }
   } catch (error) {
@@ -54,8 +54,10 @@ const signInUser = async (req, res) => {
     // console.log(Book)
     //save the session object and sending a response
     req.session.save(() => {
-      res.redirect("/users/")
+      // res.redirect("/auth/signin") ---> it will return me to the sign in page
+      // // res.render("./auth/sign-in.ejs")
       // res.render("../views/home.ejs")
+      res.render("../books/home.ejs")
     })
   } catch (error) {
     res.send(`error: ${error}`)

@@ -16,21 +16,8 @@
   <header>
     <img src="<%=libraryDetails.user.picture%>" alt="Profile Picture">
     <h2><%=libraryDetails.user.username%></h2>
-    <%if(libraryDetails.user.typeOfUser ==="Library"){%>
-      <a href="/books/create">Add Book</a>
-      <%}%>
+
   </header>
-  <h1> Books I added: </h1>
-
-  <section>
-    <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
-    <div>
-      <h3><%= libraryDetails.userBooks[i].title%></h4>
-    </div>
-    <%}%>
-  </section>
-
-
     <% if (libraryDetails.user.typeOfUser === "Library") { %>
       <a href="/books/create">Add Book</a>
       <a href="/auth/sign-out">sign out</a>
@@ -39,6 +26,8 @@
       </div>
     <% } %>
   </header>
+
+
   <section>
     <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
       <hr>
@@ -51,20 +40,6 @@
       <a href="/reviews/<%=libraryDetails.userBooks[i]._id%>">Add review</a>
     <%}%>
   </section>
-
-  <section>
-  <% for(let i = 0; i < libraryDetails.userBooks.length; i++) {
-       const book = libraryDetails.userBooks[i];
-       if(book && book._id) { %>
-   <a href="/auth/books/<%= book._id %>">
-      <div>
-        <h3><%= book._id %></h3>
-      </div>
-    </a>
-  <% } } %>
-</section>
-<a href="/auth/sign-out"> sign out</a>
-
 </body>
 </html>
 

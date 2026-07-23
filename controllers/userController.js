@@ -14,7 +14,7 @@ const getBookById = async (req, res) => {
       book: book,
     }
     console.log(allReviews)
-    res.render("../views/auth/booksTitel.ejs", { bookReviews })
+    res.render("../views/auth/booksTitle.ejs", { bookReviews })
   } catch (error) {
     console.error("⚠️ An error has occurred finding a user!", error.message)
   }

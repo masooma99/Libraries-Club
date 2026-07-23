@@ -81,6 +81,8 @@
             border-radius: 10px;
             overflow: hidden;
             text-align: center;
+            width: 200px;
+            height: 250px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
         }
@@ -89,9 +91,9 @@
             transform: translateY(-5px);
         }
 
-        .book-card a {
+        /* .book-card a {  ---> have been removed
             text-decoration: none;
-        }
+        } */
 
         .book-image {
             width: 100%;
@@ -155,16 +157,16 @@
 <div class="books-grid">
 
         <% books.forEach(book => { %>
-            <div class="book-card">
-                <a href="/title/<%= book._id %>">
+            <a href="/users/<%= book._id %>">
+                <div class="book-card">
                     <img src="<%= book.picture %>" alt="<%= book.title %>" class="book-image" height="80px" width="80px"/>
-                </a>
-                <div class="book-title">
-                    <a href="/title/<%= book._id %>"><%= book.title %></a>
+                    <div class="book-title">
+                        <h4><%= book.title %></h4>
+                    </div>
                 </div>
+            </a>
 
-            </div>
-        <% }) %>
+        <% } ) %>
 
 </div>
 

@@ -48,9 +48,10 @@ const createReview = async (req, res) => {
       user: user,
     }
     console.log(usersReview)
+    console.log(allReviews)
 
     // req.session.save(() => {
-    res.render("../views/auth/booksTitel.ejs", { bookReviews })
+    res.render("../views/auth/booksTitle.ejs", { bookReviews })
     // })
   } catch (error) {
     console.error("⚠️ An error has occurred finding a user!", error.message)

@@ -67,7 +67,14 @@ const findByTitle = async (req, res) => {
   }
 }
 
-const getAllBook = async (req, res) => {}
+const getAllBook = async (req, res) => {
+  try {
+    const books = await Book.find({})
+    res.render("../views/home.ejs", { books })
+  } catch (error) {
+    res.send(`error: ${error}`)
+  }
+}
 
 const getAllBooksByLibraryId = async (req, res) => {}
 
@@ -86,7 +93,6 @@ const updateBookById = async (req, res) => {
 const deleteBookById = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id)
-
     res.render("../views/ejs")
   } catch (error) {
     console.error("⚠️ Error deleting book:", error.message)

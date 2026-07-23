@@ -16,7 +16,8 @@
     <img src="<%= bookReviews.book.picture %>" alt="book image" height="80px" width="80px">
     <p>Author: <%= bookReviews.book.author %></p>
     <p>Description: <%= bookReviews.book.description %></p>
-    <h2>reviews</h2>
+    <h2>reviews:</h2>
+    <a href="/reviews/<%=bookReviews.book._id%>">Add review</a>
 
   <%for(let i=0; i<bookReviews.allReviews.length; i++){%>
     <div style="border: 2px solid black;  padding: auto;">
@@ -26,14 +27,14 @@
        <!-- review: rating, and comment -->
 
           <% let ratingStars = ""
-          for(let i =0;i< bookReviews.allReviews[i].rating;i++){
+          for(let j =0;j< bookReviews.allReviews[i].rating;i++){
           ratingStars=ratingStars+"⭐"%>
           <%}%>
           <p>Rating:
-          <%=bookReviews.allReviews[i].rating%>
+          <%=//bookReviews.allReviews[j]%>
           <%=ratingStars%>
         </p>
-        <p>Comment: <%=bookReviews.allReviews[i].comment%></p>
+        <p>Comment: <%=//bookReviews.allReviews[j]%></p>
     </div>
     <br>
   <%}%>
