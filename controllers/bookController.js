@@ -38,8 +38,12 @@ const createBook = async (req, res) => {
     let books_detail = []
     for (let i = 0; i < userBooks.length; i++) {
       const book_details = await Book.findOne({ _id: userBooks[i].book._id })
-      books_detail.push(book_details)
+      if (book_details !== null) {
+        books_detail.push(book_details)
+      }
     }
+
+    console.log(books_detail)
 
     const libraryDetails = {
       user: user,

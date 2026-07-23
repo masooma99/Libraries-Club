@@ -35,7 +35,7 @@ const registerUser = async (req, res) => {
 const signInUser = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email })
-    const userBooks = await LibraryBook.find({ user: user })
+    // const userBooks = await LibraryBook.find({ user: user })
     if (!user) {
       return res.send(
         "❌ No user has been registered with that email. Please sign up!"
@@ -50,7 +50,7 @@ const signInUser = async (req, res) => {
       email: user.email,
       _id: user._id,
     }
-    const books = await Book.find()
+    // const books = await Book.find()
     // console.log(Book)
     //save the session object and sending a response
     req.session.save(() => {

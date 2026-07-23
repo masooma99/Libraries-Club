@@ -1,6 +1,3 @@
-const dns = require("dns")
-dns.setServers(["8.8.8.8", "1.1.1.1"])
-
 require("dotenv").config({ quiet: true })
 const express = require("express")
 const morgan = require("morgan")
@@ -14,6 +11,9 @@ const path = require("path")
 const middleware = require("./middleware")
 const PORT = process.env.PORT ? process.env.PORT : 3000
 
+const dns = require("dns")
+dns.setServers(["8.8.8.8", "1.1.1.1"])
+
 const db = require("./db")
 
 //require routers
@@ -23,6 +23,17 @@ const bookRouter = require("./routes/bookRouter")
 const reviewsRouter = require("./routes/reviewRouter")
 
 const app = express()
+
+let sessionStore = new session.MemoryStore()
+
+if (process.env.MONGODB_URI) {
+  try {
+    sessionStore = MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+  } catch (error) {
+    console.log("Falling back to in-memory session storage.")
+    console.log(error.message)
+  }
+}
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -34,7 +45,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true, //to ensure that a session object is saved even if it contains no data
-    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+    store: sessionStore,
   })
 )
 //all use and get will be under here

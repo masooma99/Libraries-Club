@@ -26,16 +26,18 @@ const getUserById = async (req, res) => {
     const userBooks = await LibraryBook.find({ user: user })
 
     let books_detail = []
-    for (let i = 0; i < userBooks.length - 1; i++) {
+    for (let i = 0; i < userBooks.length; i++) {
       const book_details = await Book.findOne({ _id: userBooks[i].book._id })
-      books_detail.push(book_details)
+      if (book_details !== null) {
+        books_detail.push(book_details)
+      }
     }
 
     const libraryDetails = {
       user: user,
       userBooks: books_detail,
     }
-    // console.log(userBooks)
+    console.log(libraryDetails)
     req.session.save(() => {
       return res.render("../views/userPage.ejs", { libraryDetails })
     })

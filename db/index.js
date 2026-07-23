@@ -1,14 +1,30 @@
 const mongoose = require("mongoose")
-const connect = () => {
+
+const uri =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/libraries-club"
+
+const connect = async () => {
   try {
-    mongoose.connect(process.env.MONGODB_URI)
+    const dns = require("dns")
+    dns.setServers(["8.8.8.8", "1.1.1.1"])
 
     mongoose.connection.on("connected", () => {
-      console.log(`🍃 Successfully connected to MongoDB database . . . `)
+      console.log("🍃 Successfully connected to MongoDB database . . .")
     })
+
+    mongoose.connection.on("error", (error) => {
+      console.log("MongoDB connection error . . .")
+      console.log(error.message)
+    })
+
+    await mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 5000,
+    })
+
+    console.log("🍃 Successfully connected to MongoDB database . . .")
   } catch (error) {
     console.log("Error connecting to MongoDB . . .")
-    console.log(error)
+    console.log(error.message)
   }
 }
 
