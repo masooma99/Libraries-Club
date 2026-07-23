@@ -21,7 +21,7 @@ const authRouter = require("./routes/authRouter")
 const userRouter = require("./routes/userRouter")
 const bookRouter = require("./routes/bookRouter")
 const reviewsRouter = require("./routes/reviewRouter")
-
+const homeRouter = require("./routes/homeRouter")
 const app = express()
 
 let sessionStore = new session.MemoryStore()
@@ -48,12 +48,18 @@ app.use(
     store: sessionStore,
   })
 )
+
+app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
+
 //all use and get will be under here
+
 app.use(middleware.passUserToView)
 app.use("/auth", authRouter)
 app.use("/users", userRouter)
 app.use("/books", bookRouter)
 app.use("/reviews", reviewsRouter)
+app.use("/home", homeRouter)
 
 app.listen(PORT, () => {
   console.log(`Express server is listening on port : ${PORT}`)
