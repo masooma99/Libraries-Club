@@ -6,11 +6,17 @@ const LibraryBook = require("../models/LibraryBook")
 const getBookById = async (req, res) => {
   try {
     const book = await Book.findOne({ _id: req.params.id })
-    const allReviews = await Review.find({ _id: book.id })
-    // console.log(book)
+    const allReviews = await Review.find({ book: book._id })
+
+    let usersReview = []
+    for (let i = 0; i < allReviews.length; i++) {
+      const userData = await User.findOne({ _id: allReviews[i].user })
+      usersReview.push(userData)
+    }
 
     let bookReviews = {
       allReviews: allReviews,
+      users: usersReview,
       book: book,
     }
     console.log(allReviews)
@@ -45,6 +51,15 @@ const getUserById = async (req, res) => {
     console.error("⚠️ An error has occurred finding a user!", error.message)
   }
 }
+
+// const goHomePage = async (req, res) => {
+//   try {
+//     const books = await Book.find()
+//     res.render("/views/home.ejs", { books: books })
+//   } catch (error) {
+//     console.error("⚠️ An error has occurred going to home page!", error.message)
+//   }
+// }
 
 module.exports = {
   getBookById,

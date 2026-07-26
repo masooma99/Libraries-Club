@@ -92,8 +92,12 @@ const updateBookById = async (req, res) => {
 
 const deleteBookById = async (req, res) => {
   try {
-    await Book.findByIdAndDelete(req.params.id)
-    res.render("../views/ejs")
+    const deletedBook = await Book.findByIdAndDelete({ _id: req.params.bookid })
+    console.log(deletedBook)
+    const books = await Book.find()
+    res.render("../views/home.ejs", { books: books })
+    // res.render("../views/home.ejs")
+    // res.redirect("/users/home")
   } catch (error) {
     console.error("⚠️ Error deleting book:", error.message)
   }

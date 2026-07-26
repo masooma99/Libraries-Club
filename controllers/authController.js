@@ -24,7 +24,7 @@ const registerUser = async (req, res) => {
         typeOfUser: req.body.typeOfUser,
         address: req.body.address,
       })
-      res.redirect("auth/sign-in")
+      res.redirect("/auth/sign-in")
       //this will also render to ejs page later
     }
   } catch (error) {

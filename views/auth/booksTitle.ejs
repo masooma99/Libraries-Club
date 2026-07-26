@@ -4,39 +4,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      body,html{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      header{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-auto-flow: column;
+      }
+      header h1,a{
+        margin-right: 20px;
+        /* margin-left: 10px; */
+      }
+      .bigDiv{
+        padding-left: 100px;
+        padding-right: 100px;
+        margin: 60px;
+        display: grid;
+        justify-content: space-around;
+        align-items: center;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .bookDetails{}
+      .reviewDiv{
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 600px;
+        height: 500px;
+        /* for the scroll control */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        /* end of scrolling part */
+        /* margin: 70px;
+        padding-bottom: 50px;
+        padding-bottom: 50px;
+        padding-top: 50px; */
+        border: 1px solid black;
+      }
+    </style>
   </head>
   <body>
     <div class="head">
+      <header>
+        <br>
+        <br>
 <h1> Libraries Club</h1>
 <a href="/home">Home</a>
+<a href="/users/">Profile</a>
+</header>
 </div>
-    <a href="/users/">Back To Profile Page</a>
+<div class="bigDiv">
+<div class = "bookDetails">
     <h2><%= bookReviews.book.title %></h2>
-    <p>ID: <%= bookReviews.book._id %></p>
+    <!-- <p>ID: <%=// bookReviews.book._id %></p> -->
     <img src="<%= bookReviews.book.picture %>" alt="book image" height="80px" width="80px">
     <p>Author: <%= bookReviews.book.author %></p>
     <p>Description: <%= bookReviews.book.description %></p>
     <h2>reviews:</h2>
     <a href="/reviews/<%=bookReviews.book._id%>">Add review</a>
+    <!-- if you want a post method you can't just use a link ... form is the way to do it -->
+    <form id="delete-book-form-<%= bookReviews.book._id %>" action="/books/delete/<%= bookReviews.book._id %>?_method=DELETE" method="POST" style="display: inline;">
+      <button type="submit">Delete Book</button>
+    </form>
+    </div>
+    <!-- end of bookDetails -->
+    <div class = "reviewDiv">
+  <% if (bookReviews.allReviews.length === 0) { %>
+    <p>No reviews yet.</p>
+  <% } %>
 
-  <%for(let i=0; i<bookReviews.allReviews.length; i++){%>
-    <div style="border: 2px solid black;  padding: auto;">
-      <!-- user: username, and image -->
-       <img src="<%= bookReviews.users[i].picture %>" alt="user profile picture" height="40px" width="40px">
-       <p><%=bookReviews.users[i].username%></p>
-       <!-- review: rating, and comment -->
+  <% for (let i = 0; i < bookReviews.allReviews.length; i++) { %>
+    <div style="border: 2px solid black; padding: auto;">
+      <img src="<%= bookReviews.users[i].picture %>" alt="user profile picture" height="40px" width="40px">
+      <p><strong><%= bookReviews.users[i].username %></strong></p>
 
-          <% let ratingStars = ""
-          for(let j =0;j< bookReviews.allReviews[i].rating;i++){
-          ratingStars=ratingStars+"⭐"%>
-          <%}%>
-          <p>Rating:
-          <%=//bookReviews.allReviews[j]%>
-          <%=ratingStars%>
-        </p>
-        <p>Comment: <%=//bookReviews.allReviews[j]%></p>
+      <% let ratingStars = "";
+         for (let j = 0; j < bookReviews.allReviews[i].rating; j++) {
+           ratingStars += "⭐";
+         }
+      %>
+      <p>Rating: <%= ratingStars %></p>
+      <p>Comment: <%= bookReviews.allReviews[i].comment %></p>
     </div>
     <br>
-  <%}%>
+  <% } %>
+  </div>
+  <!-- end of reviewDiv -->
+  </div>
+  <!-- end of bigDiv -->
 </body>
 </html>

@@ -9,7 +9,7 @@ router.get("/create", (req, res) => {
 })
 router.get("/home", bookController.getAllBook)
 router.put("/:id", bookController.updateBookById)
-router.delete("/:id", bookController.deleteBookById)
+router.delete("/delete/:bookid", bookController.deleteBookById)
 
 router.get("/:id/edit", async (req, res) => {
   const book = await Book.findById(req.params.id)
