@@ -5,19 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= libraryDetails.user.username %></title>
   <style>
-
+    body,html{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        /* overflow: hidden; */
+        background-color: rgb(210, 180, 140);
+      }
+    header{
+            padding-top: 10px;
+            background-color: rgb(222, 184, 135);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding-bottom: 10px;
+        }
+        .navBar {
+            padding: 12px 20px;
+            width: 80%;
+            background: rgb(210, 180, 140);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            gap: 30px;
+        }
+        .personalInfo{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 30px;
+          padding: 20px;
+        }
+        .personalInfo img{
+          border-radius: 50%;
+        }
+        .detailDivBook{
+          display: flex;
+          flex-direction: column;
+        }
+        .bigDivBook{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 30px;
+        }
+        .bookList{
+        /* position: fixed; */
+        top: 0;
+        right: 0;
+        width: 600px;
+        height: 600px;
+        /* for the scroll control */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        /* end of scrolling part */
+        /* border: 1px solid black; */
+        justify-content: center;
+        align-items: center;
+      }
+        /*
+        background-color: rgb(222, 184, 135);   ---->header
+        background-color: rgb(210, 180, 140);   ---->body
+         */
   </style>
 </head>
 <body>
-<div class="head">
-<h1> Libraries Club</h1>
-<a href="/home">Home</a>
-</div>
   <header>
+    <h1> Libraries Club</h1>
+    <div class="navBar">
+      <a href="/home">Home</a>
+    </div>
+  </header>
+  <div class="personalInfo">
     <img src="<%=libraryDetails.user.picture%>" alt="Profile Picture">
     <h2><%=libraryDetails.user.username%></h2>
-
-  </header>
+  </div>
+    <div class="personalInfo">
     <% if (libraryDetails.user.typeOfUser === "Library") { %>
       <a href="/books/create">Add Book</a>
       <a href="/auth/sign-out">sign out</a>
@@ -25,19 +95,20 @@
         <a href="<%= `/auth/${user._id}/update-password` %>">Update Password</a>
       </div>
     <% } %>
-  </header>
-
+</div>
 
   <section>
     <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
       <hr>
       <a href="/users/<%=libraryDetails.userBooks[i]._id%>">
-        <div>
-          <h3><%= libraryDetails.userBooks[i].title%></h3>
+        <div class="bigDivBook">
           <img src="<%=libraryDetails.userBooks[i].picture%> " alt="book image" height="80px" width="80px">
+          <div class="detailDivBook">
+            <h3><%= libraryDetails.userBooks[i].title%></h3>
+            <a href="/reviews/<%=libraryDetails.userBooks[i]._id%>">Add review</a>
+          </div>
         </div>
       </a>
-      <a href="/reviews/<%=libraryDetails.userBooks[i]._id%>">Add review</a>
     <%}%>
   </section>
 </body>
