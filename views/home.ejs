@@ -174,7 +174,11 @@
         <% books.forEach(book => { %>
             <a href="/users/<%= book._id %>">
                 <div class="book-card">
-                    <img src="<%= book.picture %>" alt="<%= book.title %>" class="book-image" height="80px" width="80px"/>
+                    <%if(book.picture.length<15){%>
+                        <img src="/images/book.jpg" alt="No image stored in db" class="book-image" height="80px" width="80px">
+                    <%} else{%>
+                        <img src="<%= book.picture%>" alt="No image stored in db" class="book-image" height="80px" width="80px">
+                    <%}%>
                     <div class="book-title">
                         <h4><%= book.title %></h4>
                     </div>

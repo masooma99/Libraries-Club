@@ -38,6 +38,7 @@ if (process.env.MONGODB_URI) {
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, "public")))
+app.use("/images", express.static(path.join(__dirname, "images")))
 app.use(morgan("dev"))
 app.use(methodOverride("_method"))
 app.use(
