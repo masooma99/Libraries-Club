@@ -1,6 +1,7 @@
 const Book = require("../models/Book")
 const LibraryBook = require("../models/LibraryBook")
 const User = require("../models/User")
+const Review = require("../models/Review")
 // const userDiv = document.querySelectorAll(".userBook")
 
 const createBook = async (req, res) => {
@@ -26,7 +27,12 @@ const createBook = async (req, res) => {
       tempBook = newBook
     }
 
-    if (!(await LibraryBook.exists({ book: tempBook._id }))) {
+    if (
+      !(await LibraryBook.exists({
+        book: tempBook._id,
+        user: req.session.user,
+      }))
+    ) {
       await LibraryBook.create({
         numOfCopies: req.body.numOfCopies,
         book: tempBook,
@@ -92,12 +98,36 @@ const updateBookById = async (req, res) => {
 
 const deleteBookById = async (req, res) => {
   try {
-    const deletedBook = await Book.findByIdAndDelete({ _id: req.params.bookid })
-    console.log(deletedBook)
+    const user = await User.findOne({ email: req.session.user.email })
+    const userBook = await LibraryBook.findOne({
+      book: req.params.bookid,
+      user: user,
+    })
+    //delete the LibraryBook where the Book:... and the User:...
+    const deletedLibraryBook = await LibraryBook.findByIdAndDelete({
+      _id: userBook._id,
+    })
+    //now check if there is another library that has the same book, if there is then do not remove it from Book table, if not the remove this book from Book table and LibraryBook table.
+    const librariesHasBook = await LibraryBook.find({ book: req.params.bookid })
+    if (!librariesHasBook) {
+      //now if there is no other libraries has this book and it will be deleted from Book table too, then we need to delete all reviews on this book
+      const bookReviews = await Review.find({ book: req.params.bookid })
+      if (bookReviews) {
+        //if the book have reviews then delete them before deleting the book
+        for (let i = 0; i < bookReviews.length; i++) {
+          await Review.findByIdAndDelete({ _id: bookReviews[i]._id })
+        }
+      }
+      //delete the book from Book table
+      let deletedBook = await Book.findByIdAndDelete({
+        _id: req.params.bookid,
+      })
+    }
+    console.log("you successfully deleted the book")
+    // console.log(deletedBook)
+    console.log(librariesHasBook)
     const books = await Book.find()
     res.render("../views/home.ejs", { books: books })
-    // res.render("../views/home.ejs")
-    // res.redirect("/users/home")
   } catch (error) {
     console.error("⚠️ Error deleting book:", error.message)
   }

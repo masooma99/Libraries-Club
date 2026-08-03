@@ -4,6 +4,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create a book</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+        /* background: linear-gradient(135deg, #2c3e50 0%, #000000 100%); */
+        background-color: rgb(210, 180, 140);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+        color: white;
+      }
+
+      h1 {
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      form {
+        background-color: rgb(222, 184, 135);
+        margin-top: 460px;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      h2 {
+        margin-bottom: 25px;
+        color: #e6ebef;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      input {
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        border-color: #ddcdab;
+      }
+
+      button {
+        background-color: #e0cda4;
+        color: rgb(48, 36, 36);
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: #f1dcad;
+      }
+    </style>
   </head>
   <body>
     <div class="head">
@@ -47,6 +117,7 @@
         type="number"
         name="numOfPages"
         placeholder="num Of Pages"
+        min="1"
         required
       />
       <br />
@@ -55,6 +126,7 @@
         type="number"
         name="numOfCopies"
         placeholder="number Of Copies"
+        min="1"
         required
       />
       <br />

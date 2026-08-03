@@ -102,7 +102,13 @@
       <hr>
       <a href="/users/<%=libraryDetails.userBooks[i]._id%>">
         <div class="bigDivBook">
-          <img src="<%=libraryDetails.userBooks[i].picture%> " alt="book image" height="80px" width="80px">
+          <% const isUrl = libraryDetails.userBooks[i].picture.startsWith('http') %>
+                    <% if (!isUrl) { %>
+                        <img src="/images/book.jpg" alt="No image stored in db" class="book-image" height="80px" width="80px">
+                    <% } else { %>
+                        <img src="<%= libraryDetails.userBooks[i].picture %>" alt="book image" class="book-image" height="80px" width="80px">
+                    <% } %>
+          <!-- <img src="<%=//libraryDetails.userBooks[i].picture%> " alt="book image" height="80px" width="80px"> -->
           <div class="detailDivBook">
             <h3><%= libraryDetails.userBooks[i].title%></h3>
             <a href="/reviews/<%=libraryDetails.userBooks[i]._id%>">Add review</a>

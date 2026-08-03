@@ -174,11 +174,13 @@
         <% books.forEach(book => { %>
             <a href="/users/<%= book._id %>">
                 <div class="book-card">
-                    <%if(book.picture.length<15){%>
+                    <!-- some url images did not show as they are, instead the image in the local storage showed -->
+                    <% const isUrl = book.picture.startsWith('http') %>
+                    <% if (!isUrl) { %>
                         <img src="/images/book.jpg" alt="No image stored in db" class="book-image" height="80px" width="80px">
-                    <%} else{%>
-                        <img src="<%= book.picture%>" alt="No image stored in db" class="book-image" height="80px" width="80px">
-                    <%}%>
+                    <% } else { %>
+                        <img src="<%= book.picture %>" alt="book image" class="book-image" height="80px" width="80px">
+                    <% } %>
                     <div class="book-title">
                         <h4><%= book.title %></h4>
                     </div>

@@ -101,6 +101,9 @@
         justify-content: center;
         gap: 30px;
       }
+      .profile_picture{
+        border-radius: 50%;
+      }
     </style>
   </head>
   <body>
@@ -115,7 +118,13 @@
 
 <div class = "bookDetails">
   <h2 class="bookTitle"><%= bookReviews.book.title %></h2>
-  <img src="<%= bookReviews.book.picture %>" alt="book image" height="300px" width="300px">
+  <% const isUrl = bookReviews.book.picture.startsWith('http') %>
+    <% if (!isUrl) { %>
+        <img src="/images/book.jpg" alt="No image stored in db" alt="book image" height="300px" width="300px">
+    <% } else { %>
+        <img src="<%= bookReviews.book.picture %>" alt="book image" height="300px" width="300px">
+    <% } %>
+  <!-- <img src="<%= //bookReviews.book.picture %>" alt="book image" height="300px" width="300px"> -->
   <p>Author: <%= bookReviews.book.author %></p>
   <p>Description: <%= bookReviews.book.description %></p>
   <!-- if you want a post method you can't just use a link ... form is the way to do it -->
@@ -137,7 +146,13 @@
   <% for (let i = 0; i < bookReviews.allReviews.length; i++) { %>
     <div class="comment">
       <div>
-      <img src="<%= bookReviews.users[i].picture %>" alt="user profile picture" height="40px" width="40px">
+      <!-- <img src="<%=// bookReviews.users[i].picture %>" alt="user profile picture" height="40px" width="40px"> -->
+       <% const isUrl = bookReviews.users[i].picture.startsWith('http') %>
+                    <% if (!isUrl) { %>
+                        <img class="profile_picture" src="/images/book.jpg" alt="Profile picture" height="40px" width="40px">
+                    <% } else { %>
+                        <img class="profile_picture" src="<%= bookReviews.users[i].picture %>"alt="user profile picture" height="40px" width="40px">
+                    <% } %>
       <p><strong><%= bookReviews.users[i].username %></strong></p>
       </div>
       <% let ratingStars = "";
