@@ -129,12 +129,14 @@
   <p>Description: <%= bookReviews.book.description %></p>
   <!-- if you want a post method you can't just use a link ... form is the way to do it -->
   <form id="delete-book-form-<%= bookReviews.book._id %>" action="/books/delete/<%= bookReviews.book._id %>?_method=DELETE" method="POST" style="display: inline;">
+    <%if(bookReviews.deleteButton){%>
     <button type="submit">Delete Book</button>
+    <%}%>
     <br>
   </form>
   </div>
   <!-- end of bookDetails -->
-<br>
+<br width="20px">
     <div class = "reviewDiv">
       <h2>reviews:</h2>
     <a class="addReviewLink" href="/reviews/<%=bookReviews.book._id%>">Add review</a>

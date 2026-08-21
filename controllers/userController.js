@@ -13,8 +13,14 @@ const getBookById = async (req, res) => {
       const userData = await User.findOne({ _id: allReviews[i].user })
       usersReview.push(userData)
     }
-
+    const user = await User.findOne({ email: req.session.user.email })
+    const libraryBook = await LibraryBook.findOne({
+      book: book._id,
+      user: user._id,
+    })
     let bookReviews = {
+      user: user,
+      deleteButton: Boolean(libraryBook),
       allReviews: allReviews,
       users: usersReview,
       book: book,
