@@ -126,6 +126,7 @@
     <% } %>
   <!-- <img src="<%= //bookReviews.book.picture %>" alt="book image" height="300px" width="300px"> -->
   <p>Author: <%= bookReviews.book.author %></p>
+  <p>ID: <%= bookReviews.book._id %></p>
   <p>Description: <%= bookReviews.book.description %></p>
   <!-- if you want a post method you can't just use a link ... form is the way to do it -->
   <form id="delete-book-form-<%= bookReviews.book._id %>" action="/books/delete/<%= bookReviews.book._id %>?_method=DELETE" method="POST" style="display: inline;">
@@ -164,6 +165,12 @@
       %>
       <p class="rating">Rating: <%= ratingStars %></p>
       <p class="messageComment">Comment: <%= bookReviews.allReviews[i].comment %></p>
+      <p>ID: <%= bookReviews.allReviews[i]._id %></p>
+      <form id="delete-book-form-<%= bookReviews.book._id %>" action="/reviews/delete/<%= bookReviews.allReviews[i]._id %>?_method=DELETE" method="POST" style="display: inline;">
+        <br>
+        <button type="submit">Delete Book</button>
+        <br>
+      </form>
     </div>
     <br>
   <% } %>

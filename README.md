@@ -60,3 +60,15 @@ genres:
 - https://www.goodreads.com/?ref=nav_hom
 - https://www.huisvanhetboek.nl/en/collections/online-catalog
 
+
+### ***Future Updates***
+
+- [ ] not all users able to delete any book.
+- [ ] pages style "the one that we did not add any style to it" and change the colors.
+- [ ] update the delete book where the book is going to be deleted from the LibraryBook table not the Book table.
+- [ ] users can delete their reviews only.
+- [ ] users can update their reviews only.
+- [ ] validation for the password.
+- [ ] activate the search feature.
+- [ ]
+***

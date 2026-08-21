@@ -58,7 +58,43 @@ const createReview = async (req, res) => {
   }
 }
 
+const deleteReview = async (req, res) => {
+  try {
+    const loggedInUser = await User.findOne({ email: req.session.user.email })
+    const reviewUser = await Review.findOne({ _id: req.params.id }).populate(
+      "user"
+    )
+    //make sure that they are the same
+    // console.log(loggedInUser._id)
+    // console.log(reviewUser.user._id)
+    //when I added the String() it did work
+    if (String(loggedInUser._id) == String(reviewUser.user._id)) {
+      //he will be able to delete his comment
+      // console.log("you can delete this review")
+      const deletedReview = await Review.findOneAndDelete({
+        _id: reviewUser._id,
+      })
+      // console.log(deletedReview)
+      //deleting the user review did work
+    } else {
+      console.log("you can not delete this review")
+    }
+  } catch (error) {
+    console.error("⚠️ An error has occurred deleting a review!", error.message)
+  }
+}
+
+const editReview = async (req, res) => {
+  try {
+    //
+  } catch (error) {
+    console.error("⚠️ An error has occurred editing a review!", error.message)
+  }
+}
+
 module.exports = {
   getBookById,
   createReview,
+  deleteReview,
+  editReview,
 }
