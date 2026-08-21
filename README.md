@@ -64,11 +64,11 @@ genres:
 ### ***Future Updates***
 
 - [x] not all users able to delete any book.
-- [] pages style "the one that we did not add any style to it" and change the colors.
-- [] update the delete book where the book is going to be deleted from the LibraryBook table not the Book table.
-- [] users can delete their reviews only.
-- [] users can update their reviews only.
-- [] validation for the password.
-- [] activate the search feature.
-- []
+- [x] pages style "the one that we did not add any style to it" and change the colors.
+- [x] update the delete book where the book is going to be deleted from the LibraryBook table not the Book table.
+- [x] users can delete their reviews only.
+- [ ] users can update their reviews only.
+- [ ] validation for the password.
+- [ ] activate the search feature.
+- [ ] styling the pages to fit and screen size.
 ***

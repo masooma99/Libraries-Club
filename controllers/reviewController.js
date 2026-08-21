@@ -86,7 +86,15 @@ const deleteReview = async (req, res) => {
 
 const editReview = async (req, res) => {
   try {
-    //
+    const loggedInUser = await User.findOne({ email: req.session.user.email })
+    const reviewUser = await Review.findOne({ _id: req.params.id }).populate(
+      "user"
+    )
+    if (String(loggedInUser._id) == String(reviewUser.user._id)) {
+      //
+    } else {
+      console.log("You can NOT edit this review, it is not yours!")
+    }
   } catch (error) {
     console.error("⚠️ An error has occurred editing a review!", error.message)
   }
