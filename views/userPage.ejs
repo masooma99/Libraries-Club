@@ -81,6 +81,12 @@
     <h1> Libraries Club</h1>
     <div class="navBar">
       <a href="/home">Home</a>
+      <% if (libraryDetails.user.typeOfUser === "Library") { %>
+      <a href="/auth/sign-out">sign out</a>
+      <div>
+        <a href="<%= `/auth/${user._id}/update-password` %>">Update Password</a>
+      </div>
+    <% } %>
     </div>
   </header>
   <div class="personalInfo">
@@ -90,10 +96,6 @@
     <div class="personalInfo">
     <% if (libraryDetails.user.typeOfUser === "Library") { %>
       <a href="/books/create">Add Book</a>
-      <a href="/auth/sign-out">sign out</a>
-      <div>
-        <a href="<%= `/auth/${user._id}/update-password` %>">Update Password</a>
-      </div>
     <% } %>
 </div>
 

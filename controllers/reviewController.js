@@ -71,13 +71,17 @@ const deleteReview = async (req, res) => {
     if (String(loggedInUser._id) == String(reviewUser.user._id)) {
       //he will be able to delete his comment
       // console.log("you can delete this review")
+      const bookId = reviewUser.book
       const deletedReview = await Review.findOneAndDelete({
         _id: reviewUser._id,
       })
+      return res.redirect(`/users/${bookId}`)
       // console.log(deletedReview)
       //deleting the user review did work
     } else {
       console.log("you can not delete this review")
+      res.send("<script>history.back();</script>")
+      // res.send('<script>history.go(-2);</script>');  ----> if I want to go back by many steps.
     }
   } catch (error) {
     console.error("⚠️ An error has occurred deleting a review!", error.message)

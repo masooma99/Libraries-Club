@@ -66,13 +66,6 @@ const createBook = async (req, res) => {
   }
 }
 
-const findByTitle = async (req, res) => {
-  try {
-  } catch (error) {
-    res.send(`error: ${error}`)
-  }
-}
-
 const getAllBook = async (req, res) => {
   try {
     const books = await Book.find({})
@@ -128,6 +121,7 @@ const deleteBookById = async (req, res) => {
     console.log(librariesHasBook)
     const books = await Book.find()
     res.render("../views/home.ejs", { books: books })
+    // return res.redirect(`/users/${user._id}`)
   } catch (error) {
     console.error("⚠️ Error deleting book:", error.message)
   }
@@ -135,7 +129,6 @@ const deleteBookById = async (req, res) => {
 
 module.exports = {
   createBook,
-  findByTitle,
   getAllBook,
   getAllBooksByLibraryId,
   updateBookById,
