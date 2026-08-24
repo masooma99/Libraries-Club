@@ -7,6 +7,7 @@ router.get("/:id", reviewController.getBookById)
 
 router.post("/:id", reviewController.createReview)
 router.delete("/delete/:id", reviewController.deleteReview) //id of the review
-router.put("/edit/:id", reviewController.editReview)
+router.get("/edit/:id", reviewController.editReview)
+router.put("/edit/:id", reviewController.updateReview)
 
 module.exports = router

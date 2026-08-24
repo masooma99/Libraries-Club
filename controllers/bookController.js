@@ -75,15 +75,42 @@ const getAllBook = async (req, res) => {
   }
 }
 
-const getAllBooksByLibraryId = async (req, res) => {}
+const updateBookPage = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.session.user.email })
+    const userBook = await LibraryBook.findOne({
+      book: req.params.id,
+      user: user,
+    })
+    if (String(user._id) == String(userBook.user._id)) {
+      return res.render("../views/editBook.ejs", { book: userBook })
+    } else {
+      console.log("You can NOT edit this review, it is not yours!")
+      return res.send("<script>history.back();</script>")
+    }
+  } catch (error) {
+    console.error("Error loading book edit page:", error.message)
+    res.status(500).send("Unable to load the book edit page.")
+  }
+}
 
 const updateBookById = async (req, res) => {
   try {
-    const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
+    console.log("you entered the after getting the update book page")
+    const user = await User.findOne({ email: req.session.user.email })
+    const userBook = await LibraryBook.findOne({
+      book: req.params.id,
+      user: user,
+    })
+    if (!userBook || String(user._id) != String(userBook.user._id)) {
+      return res.send("<script>history.back();</script>")
+    }
+
+    await LibraryBook.findByIdAndUpdate(userBook._id, req.body, {
       returnDocument: "after",
     })
 
-    res.redirect(`/books/${book._id}`)
+    res.redirect(`/users/${req.params.id}`)
   } catch (error) {
     console.error("⚠️ An error has occurred updating a book!", error.message)
   }
@@ -97,7 +124,7 @@ const deleteBookById = async (req, res) => {
       user: user,
     })
     //delete the LibraryBook where the Book:... and the User:...
-    const deletedLibraryBook = await LibraryBook.findByIdAndDelete({
+    await LibraryBook.findByIdAndDelete({
       _id: userBook._id,
     })
     //now check if there is another library that has the same book, if there is then do not remove it from Book table, if not the remove this book from Book table and LibraryBook table.
@@ -130,7 +157,7 @@ const deleteBookById = async (req, res) => {
 module.exports = {
   createBook,
   getAllBook,
-  getAllBooksByLibraryId,
+  updateBookPage,
   updateBookById,
   deleteBookById,
 }

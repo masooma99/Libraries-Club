@@ -104,6 +104,20 @@
       .profile_picture{
         border-radius: 50%;
       }
+      #rating_div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+      }
+      #rating{
+        display: flex;
+        flex-direction: column;
+      }
+      #deleteEditForms{
+        display: flex;
+        flex-direction: column;
+      }
     </style>
   </head>
   <body>
@@ -126,12 +140,17 @@
     <% } %>
   <!-- <img src="<%= //bookReviews.book.picture %>" alt="book image" height="300px" width="300px"> -->
   <p>Author: <%= bookReviews.book.author %></p>
-  <p>ID: <%= bookReviews.book._id %></p>
   <p>Description: <%= bookReviews.book.description %></p>
   <!-- if you want a post method you can't just use a link ... form is the way to do it -->
   <form id="delete-book-form-<%= bookReviews.book._id %>" action="/books/delete/<%= bookReviews.book._id %>?_method=DELETE" method="POST" style="display: inline;">
     <%if(bookReviews.deleteButton){%>
     <button type="submit">Delete Book</button>
+    <%}%>
+    <br>
+  </form>
+  <form id="delete-book-form-<%= bookReviews.book._id %>" action="/books/edit/<%= bookReviews.book._id %>?_method=PUT" method="GET" style="display: inline;">
+    <%if(bookReviews.deleteButton){%>
+    <button type="submit">Edit Book</button>
     <%}%>
     <br>
   </form>
@@ -148,29 +167,47 @@
 
   <% for (let i = 0; i < bookReviews.allReviews.length; i++) { %>
     <div class="comment">
-      <div>
+      <div id="reviewer_info">
       <!-- <img src="<%=// bookReviews.users[i].picture %>" alt="user profile picture" height="40px" width="40px"> -->
-       <% const isUrl = bookReviews.users[i].picture.startsWith('http') %>
-                    <% if (!isUrl) { %>
-                        <img class="profile_picture" src="/images/book.jpg" alt="Profile picture" height="40px" width="40px">
-                    <% } else { %>
-                        <img class="profile_picture" src="<%= bookReviews.users[i].picture %>"alt="user profile picture" height="40px" width="40px">
-                    <% } %>
+      <% const isUrl = bookReviews.users[i].picture.startsWith('http') %>
+        <% if (!isUrl) { %>
+            <img class="profile_picture" src="/images/book.jpg" alt="Profile picture" height="40px" width="40px">
+        <% } else { %>
+            <img class="profile_picture" src="<%= bookReviews.users[i].picture %>"alt="user profile picture" height="40px" width="40px">
+        <% } %>
       <p><strong><%= bookReviews.users[i].username %></strong></p>
       </div>
+      <!-- end of reviewer_info -->
+      <div id="rating_div">
+        <div id="rating">
       <% let ratingStars = "";
-         for (let j = 0; j < bookReviews.allReviews[i].rating; j++) {
-           ratingStars += "⭐";
-         }
+        for (let j = 0; j < bookReviews.allReviews[i].rating; j++) {
+          ratingStars += "⭐";
+        }
       %>
       <p class="rating">Rating: <%= ratingStars %></p>
-      <p class="messageComment">Comment: <%= bookReviews.allReviews[i].comment %></p>
-      <p>ID: <%= bookReviews.allReviews[i]._id %></p>
+      </div>
+      <div id="deleteEditForms">
+      <% if(String(bookReviews.users[i]._id) == String(bookReviews.user._id)){%>
+      <!-- start with delete form -->
       <form id="delete-book-form-<%= bookReviews.book._id %>" action="/reviews/delete/<%= bookReviews.allReviews[i]._id %>?_method=DELETE" method="POST" style="display: inline;">
         <br>
         <button type="submit">Delete Review</button>
         <br>
       </form>
+      <!-- end of delete form and start of edit form -->
+      <form id="edit-review-form-<%= bookReviews.allReviews[i]._id %>" action="/reviews/edit/<%= bookReviews.allReviews[i]._id %>" method="GET" style="display: inline;">
+        <br>
+        <button type="submit">Edit Review</button>
+        <br>
+      </form>
+      <!-- end of edit form -->
+       <%}%>
+      </div>
+      </div>
+      <p class="messageComment">Comment: <%= bookReviews.allReviews[i].comment %></p>
+
+      <!-- end of rating_div -->
     </div>
     <br>
   <% } %>

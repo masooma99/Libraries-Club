@@ -67,8 +67,12 @@ genres:
 - [x] pages style "the one that we did not add any style to it" and change the colors.
 - [x] update the delete book where the book is going to be deleted from the LibraryBook table not the Book table.
 - [x] users can delete their reviews only.
-- [ ] users can update their reviews only.
+- [x] users can update their reviews only.
+- [x] Libraries can update the number of copies in the books they have only.
 - [ ] validation for the password.
 - [ ] activate the search feature.
 - [ ] styling the pages to fit and screen size.
+- [ ] instead of adding the book with all details entered by the library, I should have an admin "the app owner or employees" where libraries will enter a book details and send a request to add it, and the admin will accept, or reject the request, and the admin will be able to edit the form sent by the library "to make sure that the data is accurate".
+- [ ] when library user enter the book detail page, they should be able to see the able to see the number of copies they have in stock.
+- [ ] normal users "not library" will be able to see which libraries has the book they're looking for from the book details page, and will be able to make an order from one of them.
 ***

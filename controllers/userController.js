@@ -58,17 +58,7 @@ const getUserById = async (req, res) => {
   }
 }
 
-// const goHomePage = async (req, res) => {
-//   try {
-//     const books = await Book.find()
-//     res.render("/views/home.ejs", { books: books })
-//   } catch (error) {
-//     console.error("⚠️ An error has occurred going to home page!", error.message)
-//   }
-// }
-
 module.exports = {
   getBookById,
   getUserById,
-  // goHomePage,
 }

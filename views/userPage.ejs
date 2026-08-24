@@ -46,16 +46,6 @@
         .personalInfo img{
           border-radius: 50%;
         }
-        .detailDivBook{
-          display: flex;
-          flex-direction: column;
-        }
-        .bigDivBook{
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 30px;
-        }
         .bookList{
         /* position: fixed; */
         top: 0;
@@ -74,6 +64,53 @@
         background-color: rgb(222, 184, 135);   ---->header
         background-color: rgb(210, 180, 140);   ---->body
          */
+      .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .book-card {
+            background: beige;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            width: 200px;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* .book-card a {  ---> have been removed
+            text-decoration: none;
+        } */
+
+        .book-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .book-title {
+            padding: 12px;
+        }
+
+        .book-title a {
+            color: #333;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .book-title a:hover {
+            color: #667eea;
+        }
   </style>
 </head>
 <body>
@@ -98,12 +135,12 @@
       <a href="/books/create">Add Book</a>
     <% } %>
 </div>
+<hr>
 
-  <section>
+  <div class="books-grid">
     <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
-      <hr>
       <a href="/users/<%=libraryDetails.userBooks[i]._id%>">
-        <div class="bigDivBook">
+        <div class="book-card">
           <% const isUrl = libraryDetails.userBooks[i].picture.startsWith('http') %>
                     <% if (!isUrl) { %>
                         <img src="/images/book.jpg" alt="No image stored in db" class="book-image" height="80px" width="80px">
@@ -111,14 +148,13 @@
                         <img src="<%= libraryDetails.userBooks[i].picture %>" alt="book image" class="book-image" height="80px" width="80px">
                     <% } %>
           <!-- <img src="<%=//libraryDetails.userBooks[i].picture%> " alt="book image" height="80px" width="80px"> -->
-          <div class="detailDivBook">
-            <h3><%= libraryDetails.userBooks[i].title%></h3>
-            <a href="/reviews/<%=libraryDetails.userBooks[i]._id%>">Add review</a>
+          <div class="book-title">
+            <h4><%= libraryDetails.userBooks[i].title%></h4>
           </div>
         </div>
       </a>
     <%}%>
-  </section>
+    </div>
 </body>
 </html>
 

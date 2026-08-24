@@ -95,12 +95,33 @@ const editReview = async (req, res) => {
       "user"
     )
     if (String(loggedInUser._id) == String(reviewUser.user._id)) {
-      //
+      return res.render("../views/auth/editReview.ejs", { review: reviewUser })
     } else {
       console.log("You can NOT edit this review, it is not yours!")
+      return res.send("<script>history.back();</script>")
     }
   } catch (error) {
     console.error("⚠️ An error has occurred editing a review!", error.message)
+  }
+}
+
+const updateReview = async (req, res) => {
+  try {
+    const loggedInUser = await User.findOne({ email: req.session.user.email })
+    const reviewUser = await Review.findById(req.params.id)
+
+    if (!reviewUser || String(loggedInUser._id) != String(reviewUser.user)) {
+      return res.send("<script>history.back();</script>")
+    }
+
+    await Review.findByIdAndUpdate(req.params.id, {
+      rating: req.body.rating,
+      comment: req.body.comment,
+    })
+
+    return res.redirect(`/users/${reviewUser.book}`)
+  } catch (error) {
+    console.error("⚠️ An error has occurred updating a review!", error.message)
   }
 }
 
@@ -109,4 +130,5 @@ module.exports = {
   createReview,
   deleteReview,
   editReview,
+  updateReview,
 }
