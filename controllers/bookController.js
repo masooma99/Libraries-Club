@@ -2,7 +2,6 @@ const Book = require("../models/Book")
 const LibraryBook = require("../models/LibraryBook")
 const User = require("../models/User")
 const Review = require("../models/Review")
-// const userDiv = document.querySelectorAll(".userBook")
 
 const createBook = async (req, res) => {
   try {
@@ -110,7 +109,7 @@ const updateBookById = async (req, res) => {
       returnDocument: "after",
     })
 
-    res.redirect(`/users/${req.params.id}`)
+    res.redirect(`/books/${req.params.id}`)
   } catch (error) {
     console.error("⚠️ An error has occurred updating a book!", error.message)
   }
@@ -154,10 +153,48 @@ const deleteBookById = async (req, res) => {
   }
 }
 
+const getBookById = async (req, res) => {
+  try {
+    const loggedInUser = await User.findOne({ email: req.session.user.email })
+    const book = await Book.findOne({ _id: req.params.id })
+    const allReviews = await Review.find({ book: book._id })
+    const librariesHasBook = await LibraryBook.find({
+      book: book._id,
+    }).populate("user")
+
+    let usersReview = []
+    for (let i = 0; i < allReviews.length; i++) {
+      const userData = await User.findOne({ _id: allReviews[i].user })
+      usersReview.push(userData)
+    }
+    const user = await User.findOne({ email: req.session.user.email })
+    const libraryBook = await LibraryBook.findOne({
+      book: book._id,
+      user: user._id,
+    })
+    let bookReviews = {
+      user: user,
+      deleteButton: Boolean(libraryBook),
+      allReviews: allReviews,
+      users: usersReview,
+      book: book,
+      libraries: librariesHasBook,
+    }
+    console.log(librariesHasBook)
+    res.render("../views/auth/booksTitle.ejs", {
+      bookReviews: bookReviews,
+      user: loggedInUser,
+    })
+  } catch (error) {
+    console.error("⚠️ An error has occurred finding a user!", error.message)
+  }
+}
+
 module.exports = {
   createBook,
   getAllBook,
   updateBookPage,
   updateBookById,
   deleteBookById,
+  getBookById,
 }

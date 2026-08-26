@@ -117,7 +117,7 @@
   <header>
     <h1> Libraries Club</h1>
     <div class="navBar">
-      <a href="/home">Home</a>
+      <a href="/users/home">Home</a>
       <% if (libraryDetails.user.typeOfUser === "Library") { %>
       <a href="/auth/sign-out">sign out</a>
       <div>
@@ -139,7 +139,7 @@
 
   <div class="books-grid">
     <%for(let i =0; i<libraryDetails.userBooks.length; i++){%>
-      <a href="/users/<%=libraryDetails.userBooks[i]._id%>">
+      <a href="/books/<%=libraryDetails.userBooks[i]._id%>">
         <div class="book-card">
           <% const isUrl = libraryDetails.userBooks[i].picture.startsWith('http') %>
                     <% if (!isUrl) { %>

@@ -162,7 +162,7 @@
 <header>
 <h1>Libraries Club</h1>
 <div class="profile">
-<a href="/users/">Profile</a>
+<a href="/users/<%=user._id%>">Profile</a>
 <a href="#">Libraries</a>
 </div>
 <br>
@@ -177,7 +177,7 @@
 <div class="books-grid">
 
         <% books.forEach(book => { %>
-            <a href="/users/<%= book._id %>">
+            <a href="/books/<%= book._id %>">
                 <div class="book-card">
                     <!-- some url images did not show as they are, instead the image in the local storage showed -->
                     <% const isUrl = book.picture.startsWith('http') %>

@@ -1,41 +1,15 @@
-const User = require("../models/User")
 const Book = require("../models/Book")
-const Review = require("../models/Review")
 const LibraryBook = require("../models/LibraryBook")
-
-const getBookById = async (req, res) => {
-  try {
-    const book = await Book.findOne({ _id: req.params.id })
-    const allReviews = await Review.find({ book: book._id })
-
-    let usersReview = []
-    for (let i = 0; i < allReviews.length; i++) {
-      const userData = await User.findOne({ _id: allReviews[i].user })
-      usersReview.push(userData)
-    }
-    const user = await User.findOne({ email: req.session.user.email })
-    const libraryBook = await LibraryBook.findOne({
-      book: book._id,
-      user: user._id,
-    })
-    let bookReviews = {
-      user: user,
-      deleteButton: Boolean(libraryBook),
-      allReviews: allReviews,
-      users: usersReview,
-      book: book,
-    }
-    console.log(allReviews)
-    res.render("../views/auth/booksTitle.ejs", { bookReviews })
-  } catch (error) {
-    console.error("⚠️ An error has occurred finding a user!", error.message)
-  }
-}
+const User = require("../models/User")
 
 const getUserById = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.session.user.email })
-    const userBooks = await LibraryBook.find({ user: user })
+    const user = await User.findById(req.params.id)
+    if (!user) {
+      return res.status(404).send("User not found")
+    }
+
+    const userBooks = await LibraryBook.find({ user: user._id })
 
     let books_detail = []
     for (let i = 0; i < userBooks.length; i++) {
@@ -49,7 +23,7 @@ const getUserById = async (req, res) => {
       user: user,
       userBooks: books_detail,
     }
-    console.log(libraryDetails)
+    // console.log(user)
     req.session.save(() => {
       return res.render("../views/userPage.ejs", { libraryDetails })
     })
@@ -58,7 +32,14 @@ const getUserById = async (req, res) => {
   }
 }
 
+const homePage = async (req, res) => {
+  const books = await Book.find()
+  const user = await User.findOne({ email: req.session.user.email })
+  console.log(user)
+  res.render("home", { books: books, user: user })
+}
+
 module.exports = {
-  getBookById,
   getUserById,
+  homePage,
 }

@@ -7,6 +7,7 @@ router.post("/create", bookController.createBook)
 router.get("/create", (req, res) => {
   res.render("../views/createBook.ejs")
 })
+router.get("/:id", bookController.getBookById)
 router.get("/home", bookController.getAllBook)
 router.get("/edit/:id", bookController.updateBookPage)
 router.put("/edit/:id", bookController.updateBookById)
