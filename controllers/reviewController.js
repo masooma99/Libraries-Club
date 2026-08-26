@@ -32,27 +32,7 @@ const createReview = async (req, res) => {
       user: user,
       book: book,
     })
-    const allReviews = await Review.find({ book: book.id })
-
-    let usersReview = []
-    let userData
-    for (let i = 0; i < allReviews.length; i++) {
-      userData = await User.findOne({ _id: allReviews[i].user })
-      usersReview.push(userData)
-    }
-
-    let bookReviews = {
-      allReviews: allReviews,
-      users: usersReview,
-      book: book,
-      user: user,
-    }
-    console.log(usersReview)
-    console.log(allReviews)
-
-    // req.session.save(() => {
-    res.render("../views/auth/booksTitle.ejs", { bookReviews })
-    // })
+    res.redirect(`/books/${book._id}`)
   } catch (error) {
     console.error("⚠️ An error has occurred finding a user!", error.message)
   }
@@ -75,7 +55,7 @@ const deleteReview = async (req, res) => {
       const deletedReview = await Review.findOneAndDelete({
         _id: reviewUser._id,
       })
-      return res.redirect(`/users/${bookId}`)
+      return res.redirect(`/books/${bookId}`)
       // console.log(deletedReview)
       //deleting the user review did work
     } else {
@@ -119,7 +99,7 @@ const updateReview = async (req, res) => {
       comment: req.body.comment,
     })
 
-    return res.redirect(`/users/${reviewUser.book}`)
+    return res.redirect(`/books/${reviewUser.book}`)
   } catch (error) {
     console.error("⚠️ An error has occurred updating a review!", error.message)
   }

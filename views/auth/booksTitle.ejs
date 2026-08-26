@@ -156,7 +156,7 @@
     <br>
   </form>
   <h2>You can find this book in these libraries: </h2>
-  <%if(bookReviews.libraries){%>
+  <%if(bookReviews.libraries.length>0){%>
     <!-- not empty ==> print all libraries that has the book -->
      <ul>
      <%for(let i=0;i<bookReviews.libraries.length;i++){%>
@@ -164,7 +164,7 @@
       <%}%>
       </ul>
     <%}else{%>
-      <h4>this book is out of stock</h4>
+      <h4>This book is out of stock</h4>
       <%}%>
   </div>
   <!-- end of bookDetails -->
