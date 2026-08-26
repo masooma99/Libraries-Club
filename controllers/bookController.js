@@ -190,6 +190,49 @@ const getBookById = async (req, res) => {
   }
 }
 
+const searchByBookTitle = async (req, res) => {
+  try {
+    // console.log(req.body) ---> work correctly
+    // const word = req.body.bookTitle.trim()
+    const word = (req.body.bookTitle || "")
+      .trim()
+      .replace(/\s+/g, " ")
+      .toLowerCase()
+    // I need the book title from the database to be toLowerCase() too
+    const allBooks = await Book.find()
+    let sendListOfBooks
+    if (word) {
+      // console.log("word entered " + word)
+      // console.log(allBooks)
+      sendListOfBooks = allBooks.filter(
+        (book) =>
+          String(book.title)
+            .trim()
+            // to convert all consecutive spaces into a single space within the book title. ==> replace(/\s+/g, " ")
+            .replace(/\s+/g, " ")
+            .toLowerCase()
+            .includes(word)
+        // ? console.log("same " + book.title)
+        // : "not same "
+      )
+    } else {
+      // now else, if the user did not enter any thing in the search field
+      console.log("empty")
+      sendListOfBooks = allBooks
+    }
+    // console.log(sendListOfBooks)
+    // console.log(sendListOfBooks.length)
+    const user = await User.findOne({ email: req.session.user.email })
+    console.log(user)
+    res.render("home", { books: sendListOfBooks, user: user })
+  } catch (error) {
+    console.error(
+      "⚠️ An error has occurred searching for a book!",
+      error.message
+    )
+  }
+}
+
 module.exports = {
   createBook,
   getAllBook,
@@ -197,4 +240,5 @@ module.exports = {
   updateBookById,
   deleteBookById,
   getBookById,
+  searchByBookTitle,
 }

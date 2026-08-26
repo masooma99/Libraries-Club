@@ -70,7 +70,7 @@ genres:
 - [x] users can update their reviews only.
 - [x] Libraries can update the number of copies in the books they have only.
 - [ ] validation for the password.
-- [ ] activate the search feature.
+- [x] activate the search feature.
 - [ ] styling the pages to fit and screen size.
 - [ ] instead of adding the book with all details entered by the library, I should have an admin "the app owner or employees" where libraries will enter a book details and send a request to add it, and the admin will accept, or reject the request, and the admin will be able to edit the form sent by the library "to make sure that the data is accurate".
 - [ ] when library user enter the book detail page, they should be able to see the able to see the number of copies they have in stock.

@@ -57,7 +57,7 @@ const signInUser = async (req, res) => {
       // res.redirect("/auth/signin") ---> it will return me to the sign in page
       // // res.render("./auth/sign-in.ejs")
       // res.render("../views/home.ejs")
-      res.redirect("/home")
+      res.redirect("/users/home")
     })
   } catch (error) {
     res.send(`error: ${error}`)

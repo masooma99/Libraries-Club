@@ -12,5 +12,6 @@ router.get("/home", bookController.getAllBook)
 router.get("/edit/:id", bookController.updateBookPage)
 router.put("/edit/:id", bookController.updateBookById)
 router.delete("/delete/:bookid", bookController.deleteBookById)
+router.post("/search", bookController.searchByBookTitle)
 
 module.exports = router
