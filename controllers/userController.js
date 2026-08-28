@@ -4,6 +4,10 @@ const User = require("../models/User")
 
 const getUserById = async (req, res) => {
   try {
+    if (!req.params.id || !require("mongoose").isValidObjectId(req.params.id)) {
+      return res.status(400).send("Invalid user ID")
+    }
+
     const user = await User.findById(req.params.id)
     if (!user) {
       return res.status(404).send("User not found")

@@ -12,6 +12,10 @@ router.get("/home", bookController.getAllBook)
 router.get("/edit/:id", bookController.updateBookPage)
 router.put("/edit/:id", bookController.updateBookById)
 router.delete("/delete/:bookid", bookController.deleteBookById)
+// these 2 function are the same they'll just take me to different pages
 router.post("/search", bookController.searchByBookTitle)
+router.get("/create/search", bookController.searchBookPage)
+router.post("/create/search", bookController.searchBook)
+router.post("/create/search/add", bookController.createLibraryBook)
 
 module.exports = router

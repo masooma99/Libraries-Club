@@ -2,6 +2,7 @@ const Book = require("../models/Book")
 const LibraryBook = require("../models/LibraryBook")
 const User = require("../models/User")
 const Review = require("../models/Review")
+const { render } = require("ejs")
 
 const createBook = async (req, res) => {
   try {
@@ -233,6 +234,84 @@ const searchByBookTitle = async (req, res) => {
   }
 }
 
+const searchBook = async (req, res) => {
+  try {
+    // console.log(req.body) ---> work correctly
+    // const word = req.body.bookTitle.trim()
+    const word = (req.body.bookTitle || "")
+      .trim()
+      .replace(/\s+/g, " ")
+      .toLowerCase()
+    // I need the book title from the database to be toLowerCase() too
+    const allBooks = await Book.find()
+    let sendListOfBooks
+    if (word) {
+      // console.log("word entered " + word)
+      // console.log(allBooks)
+      sendListOfBooks = allBooks.filter(
+        (book) =>
+          String(book.title)
+            .trim()
+            // to convert all consecutive spaces into a single space within the book title. ==> replace(/\s+/g, " ")
+            .replace(/\s+/g, " ")
+            .toLowerCase()
+            .includes(word)
+        // ? console.log("same " + book.title)
+        // : "not same "
+      )
+    } else {
+      // now else, if the user did not enter any thing in the search field
+      console.log("empty")
+      sendListOfBooks = allBooks
+    }
+    // console.log(sendListOfBooks)
+    // console.log(sendListOfBooks.length)
+    const user = await User.findOne({ email: req.session.user.email })
+    console.log(user)
+    res.render("searchBook", { books: sendListOfBooks, user: user })
+  } catch (error) {
+    console.error(
+      "⚠️ An error has occurred searching for a book!",
+      error.message
+    )
+  }
+}
+
+const searchBookPage = async (req, res) => {
+  try {
+    const book = await Book.find()
+    res.render("searchBook", { books: book })
+  } catch (error) {
+    console.error(
+      "⚠️ An error has occurred opening search book page!",
+      error.message
+    )
+  }
+}
+
+const createLibraryBook = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.session.user.email })
+    if (!user) {
+      return res.status(404).send("User not found")
+    }
+    // this will create LibraryBook only
+    //     req.body
+    // { addedBook: '69cd77b18ef814a55f6a0ad7', numOfCopies: '3' }
+    const newBook = await LibraryBook.create({
+      user: user,
+      numOfCopies: req.body.numOfCopies,
+      book: req.body.addedBook,
+    })
+    res.redirect(`/users/${user._id}`)
+  } catch (error) {
+    console.error(
+      "⚠️ An error has occurred creating Library Book!",
+      error.message
+    )
+  }
+}
+
 module.exports = {
   createBook,
   getAllBook,
@@ -241,4 +320,7 @@ module.exports = {
   deleteBookById,
   getBookById,
   searchByBookTitle,
+  searchBook,
+  searchBookPage,
+  createLibraryBook,
 }

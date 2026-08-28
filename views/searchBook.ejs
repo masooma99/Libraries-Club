@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/books/create">add a new book</a>
+    <h2>Search for existing book</h2>
+    <div class="search-container">
+      <form action="/books/create/search" method="POST">
+        <input
+          type="text"
+          name="bookTitle"
+          class="search-text"
+          placeholder="Search "
+        />
+        <button type="submit" class="search-button">Search</button>
+      </form>
+    </div>
+    <!-- find a way to add this part  -->
+
+    <%if(books){%>
+
+<div class="books-grid">
+  <form action="/books/create/search/add" method="POST">
+
+        <% books.forEach(book => { %>
+          <label>
+    <input type="radio" name="addedBook" value="<%=book._id%>">
+            <a href="/books/<%= book._id %>">
+                <div class="book-card">
+                    <!-- some url images did not show as they are, instead the image in the local storage showed -->
+                    <% const isUrl = book.picture.startsWith('http') %>
+                    <% if (!isUrl) { %>
+                        <img src="/images/book.jpg" alt="No image stored in db" class="book-image" height="80px" width="80px">
+                    <% } else { %>
+                        <img src="<%= book.picture %>" alt="book image" class="book-image" height="80px" width="80px">
+                    <% } %>
+                    <div class="book-title">
+                        <h4><%= book.title %></h4>
+                    </div>
+                </div>
+            </a></label>
+
+        <% } ) %>
+
+</div>
+<% } %>
+number of copies
+<input
+        type="number"
+        name="numOfCopies"
+        placeholder="number Of Copies"
+        min="1"
+        required
+      />
+      <br>
+      <button type="submit">Create</button>
+</form>
+
+  </body>
+</html>
