@@ -1,13 +1,18 @@
 const Book = require("../models/Book")
 const LibraryBook = require("../models/LibraryBook")
 const User = require("../models/User")
+const Admin = require("../models/Admin")
 
 const getUserById = async (req, res) => {
   try {
     if (!req.params.id || !require("mongoose").isValidObjectId(req.params.id)) {
       return res.status(400).send("Invalid user ID")
     }
-
+    const userExists = await Admin.exists({ user: req.params.id })
+    let admin
+    if (userExists) {
+      admin = await Admin.findOne({ user: req.params.id }).populate("user")
+    }
     const user = await User.findById(req.params.id)
     if (!user) {
       return res.status(404).send("User not found")
@@ -29,7 +34,10 @@ const getUserById = async (req, res) => {
     }
     // console.log(user)
     req.session.save(() => {
-      return res.render("../views/userPage.ejs", { libraryDetails })
+      return res.render("../views/userPage.ejs", {
+        libraryDetails: libraryDetails,
+        admin: admin,
+      })
     })
   } catch (error) {
     console.error("⚠️ An error has occurred finding a user!", error.message)

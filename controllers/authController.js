@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt")
 const User = require("../models/User")
 const Book = require("../models/Book")
 const LibraryBook = require("../models/LibraryBook")
+const Admin = require("../models/Admin")
 
 const registerUser = async (req, res) => {
   try {
@@ -21,7 +22,7 @@ const registerUser = async (req, res) => {
         email: req.body.email,
         password: hashedPassword,
         picture: req.body.picture,
-        typeOfUser: req.body.typeOfUser,
+        library: false,
         address: req.body.address,
       })
       res.redirect("/auth/sign-in")
@@ -107,9 +108,43 @@ const updatePassword = async (req, res) => {
   }
 }
 
+const changeAllOldAccountToLibrary = async (req, res) => {
+  try {
+    await User.updateMany({}, { library: true })
+  } catch (error) {
+    console.error(
+      "⚠️ An error has occurred changing All Old Accounts To Library!",
+      error.message
+    )
+  }
+}
+
+const adminUser = async (req, res) => {
+  try {
+    //1. Find the user by ID
+    const user = await User.findById(req.params.id)
+    if (!user) {
+      return res.send("❌ User not found!")
+    }
+    const newAdmin = await Admin.create({
+      manager: user._id,
+      user: user._id,
+      managerRole: true,
+    })
+    res.send(`${user.username} is now an admin!`)
+  } catch (error) {
+    console.error(
+      "⚠️ An error has occurred changing the user to be an Admin!",
+      error.message
+    )
+  }
+}
+
 module.exports = {
   signInUser,
   registerUser,
   signOutUser,
   updatePassword,
+  // changeAllOldAccountToLibrary,
+  adminUser,
 }

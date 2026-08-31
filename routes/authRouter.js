@@ -3,6 +3,7 @@ const router = express.Router()
 
 const authController = require("../controllers/authController")
 
+// router.put("/true", authController.changeAllOldAccountToLibrary)
 router.post("/sign-up", authController.registerUser)
 router.get("/sign-up", (req, res) => {
   res.render("../views/auth/sign-up.ejs")
@@ -16,5 +17,6 @@ router.put("/:id", authController.updatePassword)
 router.get("/:id/update-password", (req, res) => {
   res.render("auth/update-password.ejs")
 })
+router.post("/admin/:id", authController.adminUser)
 
 module.exports = router

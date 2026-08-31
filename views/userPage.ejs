@@ -118,20 +118,22 @@
     <h1> Libraries Club</h1>
     <div class="navBar">
       <a href="/users/home">Home</a>
-      <% if (libraryDetails.user.typeOfUser === "Library") { %>
+      <% if (libraryDetails.user) { %>
       <a href="/auth/sign-out">sign out</a>
       <div>
         <a href="<%= `/auth/${user._id}/update-password` %>">Update Password</a>
       </div>
     <% } %>
+    <!-- I should add else sign in or sign up and instead of the user info it'll just show a message asking the user to sign in  -->
     </div>
   </header>
   <div class="personalInfo">
     <img src="<%=libraryDetails.user.picture%>" alt="Profile Picture">
     <h2><%=libraryDetails.user.username%></h2>
   </div>
-    <div class="personalInfo">
-    <% if (libraryDetails.user.typeOfUser === "Library") { %>
+
+  <div class="personalInfo">
+    <% if (libraryDetails.user.library === true) { %>
       <a href="/books/create/search">Add Book</a>
     <% } %>
 </div>
@@ -155,6 +157,11 @@
       </a>
     <%}%>
     </div>
+
+    <% if (admin) { %>
+      <h1>you are an admin <%=admin.user.username%></h1>
+      <!-- end of if user is admin -->
+    <% } %>
 </body>
 </html>
 
