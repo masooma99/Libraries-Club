@@ -137,6 +137,14 @@
       <a href="/books/create/search">Add Book</a>
     <% } %>
 </div>
+<!-- add a request  -->
+<div id="request">
+  <form action="/requests/create" method="POST">
+    <h1 type="hidden" name="userId" value="<%=libraryDetails.user._id%>"><%=libraryDetails.user._id%></h1>
+  <button type="submit">send request</button>
+  </form>
+</div>
+<!-- done with the request part -->
 <hr>
 
   <div class="books-grid">

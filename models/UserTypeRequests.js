@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const adminSchema = new mongoose.Schema(
+const userTypeRequestSchema = new mongoose.Schema(
   {
     admin: {
       type: mongoose.Schema.Types.ObjectId,
@@ -33,4 +33,4 @@ const adminSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model("Admin", adminSchema)
+module.exports = mongoose.model("userTypeRequest", userTypeRequestSchema)
